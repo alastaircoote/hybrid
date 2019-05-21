@@ -44,12 +44,13 @@ class NotificationHandler {
     }
     
     
-    static func sendAction(_ action:String, notification:Notification) -> Promise<Void> {
+    static func sendAction(_ action:String, notification:Notification, reply: String?) -> Promise<Void> {
         
         return ServiceWorkerInstance.getActiveWorkerByURL(notification.belongsToWorkerURL)
         .then { sw in
             
-            let event = NotificationEvent(type: "notificationclick", notification: notification, action: action)
+            
+            let event = NotificationEvent(type: "notificationclick", notification: notification, action: action, reply: reply)
             
             return sw!.dispatchExtendableEvent(event)
             

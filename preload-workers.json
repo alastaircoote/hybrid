@@ -2,9 +2,6 @@
     "debug": [
     ],
     "release": [
-        {
-        "scope": "${INITIAL_URL}",
-        "src": "${INITIAL_URL}sw.js"
-        }
+       
     ]
 }

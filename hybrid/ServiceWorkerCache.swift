@@ -145,7 +145,7 @@ struct RequestAndResponse {
     ///
     /// - Parameter url: The URL to try to match
     /// - Returns: A promise that resolves to a FetchResponse, or throws an error if one is not found
-    func _match(_ url: URL) -> Promise<FetchResponse> {
+    func _match(_ url: URL) -> Promise<FetchResponse?> {
         
         return Promise(value: ())
         .then {
@@ -178,7 +178,7 @@ struct RequestAndResponse {
             }
             
             if response == nil {
-                throw CacheNoMatchError()
+                return Promise(value: nil)
             }
             
             return Promise(value: response!)

@@ -132,7 +132,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
             var htmlInner = responseAsString.substring(with: r)
             htmlInner = htmlInner
                 .replacingOccurrences(of: "'", with: "\\'")
-                .replacingOccurrences(of: "\n", with: "\\n'")
+                .replacingOccurrences(of: "\n", with: "\\n  ")
             
             // We need to check if we have a new active worker for our new URL
             

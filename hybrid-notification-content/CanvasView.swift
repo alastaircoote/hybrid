@@ -85,7 +85,7 @@ class CanvasView: UIView {
         self.displayLink!.remove(from: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
-    var wantsAnimationFrame:Bool = false
+    var wantsAnimationFrame:Bool = true
     var pendingRender = false
     
     func runUpdate() {

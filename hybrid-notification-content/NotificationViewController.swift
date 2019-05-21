@@ -308,6 +308,10 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         
         Promise(value: ())
         .then { () -> Promise<Void> in
+            
+            
+            
+            
             if response.actionIdentifier == UNNotificationDismissActionIdentifier {
                 
                 if self.notificationInstance!.video != nil {
@@ -321,13 +325,19 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                 return NotificationHandler.sendNotificationEvent(type: "notificationclose", self.notificationInstance!)
             }
             
-            if let clickedActionIndex = Int(response.actionIdentifier) {
+           
                 
-                let action = self.notificationShowData!.getActions()[clickedActionIndex].identifier
-                
-                return NotificationHandler.sendAction(action, notification: self.notificationInstance!)
-                
-            }
+                if let action = self.notificationShowData!.getActions()
+                    .first(where: { $0.identifier == response.actionIdentifier}) {
+                    var reply:String? = nil
+                    
+                    if let textResponse = response as? UNTextInputNotificationResponse {
+                        reply = textResponse.userText
+                    }
+                    
+                    return NotificationHandler.sendAction(action.identifier, notification: self.notificationInstance!, reply: reply)
+                }
+            
             
             throw NotificationResponseFailedError()
         }

@@ -33,7 +33,7 @@ const config = {
 }
 
 if (process.env["CONFIGURATION"] && process.env["CONFIGURATION"] !== "Debug") {
-    config.plugins.push(uglify({},minify));
+    // config.plugins.push(uglify({},minify));
 }
 
 export default config;

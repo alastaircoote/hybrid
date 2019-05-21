@@ -85,7 +85,6 @@
 		8A77863B1D5BCE050062E12B /* MessageChannelManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A77863A1D5BCE050062E12B /* MessageChannelManagerSpec.swift */; };
 		8A77863D1D5D1C520062E12B /* ServiceWorkerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A77863C1D5D1C520062E12B /* ServiceWorkerAPI.swift */; };
 		8A7A49F51D91A991004C8253 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7A49F41D91A991004C8253 /* NotificationService.swift */; };
-		8A7A49F91D91A991004C8253 /* notification-extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8A7A49F21D91A991004C8253 /* notification-extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8A824FE31E01D3F00065E954 /* UserDefaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A824FE21E01D3F00065E954 /* UserDefaultStore.swift */; };
 		8A824FE51E01D4130065E954 /* PushEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A824FE41E01D4130065E954 /* PushEventStore.swift */; };
 		8A824FE71E01D4910065E954 /* PushEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A824FE41E01D4130065E954 /* PushEventStore.swift */; };
@@ -120,7 +119,6 @@
 		8AA112911D79E3CD001EC463 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA112901D79E3CD001EC463 /* UserNotifications.framework */; };
 		8AA112931D79E3CD001EC463 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AA112921D79E3CD001EC463 /* UserNotificationsUI.framework */; };
 		8AA112961D79E3CD001EC463 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA112951D79E3CD001EC463 /* NotificationViewController.swift */; };
-		8AA1129D1D79E3CD001EC463 /* hybrid-notification-content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8AA1128F1D79E3CD001EC463 /* hybrid-notification-content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8AA2CBD31DB943E4004F95C3 /* PendingPushEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA2CBD21DB943E4004F95C3 /* PendingPushEvent.swift */; };
 		8AAA5E811E03293300CE62F9 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA5E801E03293300CE62F9 /* ObjC.m */; };
 		8AAA5E821E03293300CE62F9 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAA5E801E03293300CE62F9 /* ObjC.m */; };
@@ -180,6 +178,8 @@
 		D31BC1141CD534CF00CF6BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D31BC1131CD534CF00CF6BEB /* Assets.xcassets */; };
 		D31BC1171CD534CF00CF6BEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31BC1151CD534CF00CF6BEB /* LaunchScreen.storyboard */; };
 		D31BC12D1CD534CF00CF6BEB /* hybridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31BC12C1CD534CF00CF6BEB /* hybridUITests.swift */; };
+		D35482E822933D81002A40BB /* hybrid-notification-content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8AA1128F1D79E3CD001EC463 /* hybrid-notification-content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D35482EB22933D81002A40BB /* notification-extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8A7A49F21D91A991004C8253 /* notification-extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D381163A1CD5AE96004A3CCD /* js-dist in Resources */ = {isa = PBXBuildFile; fileRef = D38116391CD5AE96004A3CCD /* js-dist */; };
 /* End PBXBuildFile section */
 
@@ -191,26 +191,12 @@
 			remoteGlobalIDString = D31BC1081CD534CE00CF6BEB;
 			remoteInfo = hybrid;
 		};
-		8A7A49F71D91A991004C8253 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D31BC1011CD534CE00CF6BEB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A7A49F11D91A991004C8253;
-			remoteInfo = "notification-extension";
-		};
 		8A933F8C1D8726D200F9DC72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D31BC1011CD534CE00CF6BEB /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D31BC1081CD534CE00CF6BEB;
 			remoteInfo = hybrid;
-		};
-		8AA1129B1D79E3CD001EC463 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D31BC1011CD534CE00CF6BEB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8AA1128E1D79E3CD001EC463;
-			remoteInfo = "hybrid-notification-content";
 		};
 		D31BC1291CD534CF00CF6BEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -219,17 +205,31 @@
 			remoteGlobalIDString = D31BC1081CD534CE00CF6BEB;
 			remoteInfo = hybrid;
 		};
+		D35482E922933D81002A40BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D31BC1011CD534CE00CF6BEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AA1128E1D79E3CD001EC463;
+			remoteInfo = "hybrid-notification-content";
+		};
+		D35482EC22933D81002A40BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D31BC1011CD534CE00CF6BEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A7A49F11D91A991004C8253;
+			remoteInfo = "notification-extension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8AA112A11D79E3CE001EC463 /* Embed App Extensions */ = {
+		D35482EE22933D81002A40BB /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8AA1129D1D79E3CD001EC463 /* hybrid-notification-content.appex in Embed App Extensions */,
-				8A7A49F91D91A991004C8253 /* notification-extension.appex in Embed App Extensions */,
+				D35482E822933D81002A40BB /* hybrid-notification-content.appex in Embed App Extensions */,
+				D35482EB22933D81002A40BB /* notification-extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,7 +713,6 @@
 				8A7A49EE1D91A991004C8253 /* Sources */,
 				8A7A49EF1D91A991004C8253 /* Frameworks */,
 				8A7A49F01D91A991004C8253 /* Resources */,
-				CFF0FF4F45844A4E68A7F321 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -732,7 +731,6 @@
 				8AA1128B1D79E3CD001EC463 /* Sources */,
 				8AA1128C1D79E3CD001EC463 /* Frameworks */,
 				8AA1128D1D79E3CD001EC463 /* Resources */,
-				1BC3F9F632F6DDA8FBAE1BED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -755,14 +753,13 @@
 				D31BC1061CD534CE00CF6BEB /* Frameworks */,
 				D31BC1071CD534CE00CF6BEB /* Resources */,
 				184824172DE97002887D2834 /* [CP] Embed Pods Frameworks */,
-				DE06B41D1E7E156132351F47 /* [CP] Copy Pods Resources */,
-				8AA112A11D79E3CE001EC463 /* Embed App Extensions */,
+				D35482EE22933D81002A40BB /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8AA1129C1D79E3CD001EC463 /* PBXTargetDependency */,
-				8A7A49F81D91A991004C8253 /* PBXTargetDependency */,
+				D35482EA22933D81002A40BB /* PBXTargetDependency */,
+				D35482ED22933D81002A40BB /* PBXTargetDependency */,
 			);
 			name = hybrid;
 			productName = hybrid;
@@ -778,7 +775,6 @@
 				D31BC11A1CD534CF00CF6BEB /* Frameworks */,
 				D31BC11B1CD534CF00CF6BEB /* Resources */,
 				3FCC0C4619FECC2659906509 /* [CP] Embed Pods Frameworks */,
-				E980CA49F9C0CF977B955ADA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -820,9 +816,9 @@
 				TargetAttributes = {
 					8A7A49F11D91A991004C8253 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6J2C5AEPEG;
+						DevelopmentTeam = K29JF287XX;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -831,9 +827,9 @@
 					};
 					8AA1128E1D79E3CD001EC463 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6J2C5AEPEG;
+						DevelopmentTeam = K29JF287XX;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -845,9 +841,9 @@
 					};
 					D31BC1081CD534CE00CF6BEB = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 6J2C5AEPEG;
+						DevelopmentTeam = K29JF287XX;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -867,7 +863,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 6J2C5AEPEG;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						TestTargetID = D31BC1081CD534CE00CF6BEB;
 					};
 					D31BC1271CD534CF00CF6BEB = {
@@ -960,28 +956,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hybrid/Pods-hybrid-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDBMigrationManager/FMDBMigrationManager.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDBMigrationManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hybrid/Pods-hybrid-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1BC3F9F632F6DDA8FBAE1BED /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hybrid-notification-content/Pods-hybrid-notification-content-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2FC2BB3EE4D8B8156E92BDC9 /* [CP] Check Pods Manifest.lock */ = {
@@ -990,13 +982,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hybridTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3FCC0C4619FECC2659906509 /* [CP] Embed Pods Frameworks */ = {
@@ -1005,9 +1000,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hybridTests/Pods-hybridTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDBMigrationManager/FMDBMigrationManager.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDBMigrationManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1020,13 +1030,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hybrid-notification-content-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A53C92C1DF5D16600560310 /* ShellScript */ = {
@@ -1040,7 +1053,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "node \"$PROJECT_DIR\"/js-src/preload-workers \"$SRCROOT\"/preload-workers.json \"$SRCROOT\"/preload-workers";
+			shellScript = ". ~/.nvm/nvm.sh\nnvm exec 6 node \"$PROJECT_DIR\"/js-src/preload-workers \"$SRCROOT\"/preload-workers.json \"$SRCROOT\"/preload-workers\n";
 		};
 		8C4A98E43D1B65285488ADCB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1048,13 +1061,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-notification-extension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B83742D19A3F00CD184577C /* [CP] Check Pods Manifest.lock */ = {
@@ -1063,28 +1079,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hybrid-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CFF0FF4F45844A4E68A7F321 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-notification-extension/Pods-notification-extension-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D32977D31CDE5D16008B3767 /* ShellScript */ = {
@@ -1099,36 +1103,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"$PROJECT_DIR\"/js-src\nrm ../hybrid/js-dist/*\nnpm run rollup -- src/webview/document-start.ts -o ../hybrid/js-dist/document-start.js &&\nnpm run rollup -- src/service-worker/worker-context.ts -o ../hybrid/js-dist/worker-context.js\n";
-			showEnvVarsInLog = 0;
-		};
-		DE06B41D1E7E156132351F47 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hybrid/Pods-hybrid-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E980CA49F9C0CF977B955ADA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hybridTests/Pods-hybridTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1325,25 +1299,25 @@
 			target = D31BC1081CD534CE00CF6BEB /* hybrid */;
 			targetProxy = 8A701C9A1DA2B75D007A11F3 /* PBXContainerItemProxy */;
 		};
-		8A7A49F81D91A991004C8253 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8A7A49F11D91A991004C8253 /* notification-extension */;
-			targetProxy = 8A7A49F71D91A991004C8253 /* PBXContainerItemProxy */;
-		};
 		8A933F8D1D8726D200F9DC72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D31BC1081CD534CE00CF6BEB /* hybrid */;
 			targetProxy = 8A933F8C1D8726D200F9DC72 /* PBXContainerItemProxy */;
 		};
-		8AA1129C1D79E3CD001EC463 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8AA1128E1D79E3CD001EC463 /* hybrid-notification-content */;
-			targetProxy = 8AA1129B1D79E3CD001EC463 /* PBXContainerItemProxy */;
-		};
 		D31BC12A1CD534CF00CF6BEB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D31BC1081CD534CE00CF6BEB /* hybrid */;
 			targetProxy = D31BC1291CD534CF00CF6BEB /* PBXContainerItemProxy */;
+		};
+		D35482EA22933D81002A40BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AA1128E1D79E3CD001EC463 /* hybrid-notification-content */;
+			targetProxy = D35482E922933D81002A40BB /* PBXContainerItemProxy */;
+		};
+		D35482ED22933D81002A40BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A7A49F11D91A991004C8253 /* notification-extension */;
+			targetProxy = D35482EC22933D81002A40BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1366,14 +1340,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "notification-extension/notification-extension.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				INFOPLIST_FILE = "notification-extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "gdnmobilelab.hybrid.notification-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "alastair.gdnmobilelab.hybrid.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "126bd440-fa04-45f9-88a8-7480d713620e";
-				PROVISIONING_PROFILE_SPECIFIER = "hybrid notify-ext dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "notification-extension/hybrid-notification-extension-Bridging-Header.h";
@@ -1388,14 +1361,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "notification-extension/notification-extension.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				INFOPLIST_FILE = "notification-extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "gdnmobilelab.hybrid.notification-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "alastair.gdnmobilelab.hybrid.notification-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b7af0ff4-fa3b-426f-8994-4da6ff0f729a";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: gdnmobilelab.hybrid.notification-extension";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "notification-extension/hybrid-notification-extension-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1409,15 +1381,15 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "hybrid-notification-content/hybrid-notification-content.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				INFOPLIST_FILE = "hybrid-notification-content/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "gdnmobilelab.hybrid.hybrid-notification-content";
+				PRODUCT_BUNDLE_IDENTIFIER = "alastair.gdnmobilelab.hybrid.hybrid-notification-content";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4b005d58-8a96-4f37-81a1-3dc63a601a2f";
-				PROVISIONING_PROFILE_SPECIFIER = "gdnmobilelab dev notify";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "hybrid-notification-content/hybrid-notification-content-Bridging-Header.h";
@@ -1432,15 +1404,15 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_ENTITLEMENTS = "hybrid-notification-content/hybrid-notification-content.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				INFOPLIST_FILE = "hybrid-notification-content/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "gdnmobilelab.hybrid.hybrid-notification-content";
+				PRODUCT_BUNDLE_IDENTIFIER = "alastair.gdnmobilelab.hybrid.hybrid-notification-content";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3dc524e-988f-40db-90eb-8d600dba83b3";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: gdnmobilelab.hybrid.hybrid-notification-content";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "hybrid-notification-content/hybrid-notification-content-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1451,7 +1423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_GROUP_NAME = group.gdnmobilelab.hybrid;
+				APP_GROUP_NAME = group.alastair.hybrid;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1488,7 +1460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INITIAL_URL = "https://app.gdnmobilelab.com/";
+				INITIAL_URL = "http://localhost:9080";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1504,7 +1476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_GROUP_NAME = group.gdnmobilelab.hybrid;
+				APP_GROUP_NAME = group.alastair.hybrid;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1535,12 +1507,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INITIAL_URL = "https://app.gdnmobilelab.com/";
+				INITIAL_URL = "https://alastaircoote.github.io/hybrid-test-worker/dist/";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				SDKROOT = iphoneos;
-				SERVICE_WORKER_ENABLED_DOMAINS = "app.gdnmobilelab.com,www.gdnmobilelab.com";
+				SERVICE_WORKER_ENABLED_DOMAINS = alastaircoote.github.io;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
@@ -1555,17 +1527,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hybrid/hybrid.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				EMPTY_WORKERS_ON_LOAD = "$(inherited)";
 				INFOPLIST_FILE = hybrid/Info.plist;
-				INITIAL_URL = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gdnmobilelab.hybrid;
+				PRODUCT_BUNDLE_IDENTIFIER = alastair.gdnmobilelab.hybrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dbc090f1-f89d-4915-b23f-d8dad2b0daf2";
-				PROVISIONING_PROFILE_SPECIFIER = "gdnmobilelab hybrid plus domain";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = IS_DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "hybrid/hybrid-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1580,17 +1550,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hybrid/hybrid.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K29JF287XX;
 				EMPTY_WORKERS_ON_LOAD = "$(inherited)";
 				INFOPLIST_FILE = hybrid/Info.plist;
-				INITIAL_URL = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gdnmobilelab.hybrid;
+				PRODUCT_BUNDLE_IDENTIFIER = alastair.gdnmobilelab.hybrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f2e831a0-f34c-4e63-ad0f-51d080316293";
-				PROVISIONING_PROFILE_SPECIFIER = "hybrid dist with domain";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = IS_RELEASE;
 				SWIFT_OBJC_BRIDGING_HEADER = "hybrid/hybrid-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1603,12 +1571,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = hybridTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gdmobilelab.hybridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hybrid.app/hybrid";
 			};
@@ -1620,11 +1591,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 6J2C5AEPEG;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = hybridTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gdmobilelab.hybridTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hybrid.app/hybrid";
 			};

@@ -187,17 +187,17 @@ import PromiseKit
                
                 attachments.forEach { content.attachments.append($0) }
                 
-                var actionLabels: [String] = []
+//                var actionLabels: [String] = []
                 
-                let maybeActions = options["actions"] as? [AnyObject]
+                let actions = options["actions"] as? [AnyObject] ?? []
                 
                 // We save the actions just by numeric index, so all we need for iOS is the title
-                if let actions = maybeActions {
-                    actionLabels = actions.map { $0["title"] as! String }
-                }
+//                if let actions = maybeActions {
+//                    actionLabels = actions.map { $0["title"] as! String }
+//                }
                 
                 // Even if we don't have any actions we might need to reset the category to remove them
-                PayloadToNotificationContent.setNotificationCategoryBasedOnActions(actionLabels)
+                PayloadToNotificationContent.setNotificationCategoryBasedOnActions(actions)
                 
                 // Add this so that it passes the notification delegate filter and shows when
                 // the app is in the foreground

@@ -35,6 +35,16 @@ DEPENDENCIES:
   - Quick
   - XCGLogger (~> 4.0.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - FMDBMigrationManager
+    - GCDWebServer
+    - Nimble
+    - PromiseKit
+    - Quick
+    - XCGLogger
+
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FMDBMigrationManager: d52007f328ea0665e8985ca8a33500707aef084f
@@ -46,4 +56,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ad75832d037e2556a7267a80979f4409a49494ed
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.5.3

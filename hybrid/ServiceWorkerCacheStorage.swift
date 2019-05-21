@@ -87,7 +87,7 @@ import PromiseKit
 
     }
     
-    func _match(_ url: URL) -> Promise<FetchResponse> {
+    func _match(_ url: URL) -> Promise<FetchResponse?> {
         // Can't find anything in the spec to decide what order we do this in. So we'll just do it in whatever order they come.
 
         return _keys()
@@ -95,7 +95,7 @@ import PromiseKit
             
             // Now we have all of our keys, we go through each one by one to see if it has a response
             
-            let tryIndex = { (idx:Int) -> Promise<FetchResponse> in
+            let tryIndex = { (idx:Int) -> Promise<FetchResponse?> in
                 let cache = self._open(allKeys[idx])
                 return cache._match(url)
             }
@@ -106,11 +106,11 @@ import PromiseKit
             .then {
     
                 if allKeys.count == 0 {
-                    throw CacheNoMatchError()
+                    return Promise(value: nil)
                 }
                 
                 return tryIndex(currentIndex)
-                .recover { error -> Promise<FetchResponse> in
+                .recover { error -> Promise<FetchResponse?> in
                     currentIndex = currentIndex + 1
                     if currentIndex == allKeys.count {
                         // Nothing left to try

@@ -34,19 +34,27 @@ class PayloadToNotificationContent {
         return when(fulfilled: promises)
     }
     
-    static func setNotificationCategoryBasedOnActions(_ actions: [String]?) {
+    static func setNotificationCategoryBasedOnActions(_ actions: [AnyObject]) {
         
         var nativeActions: [UNNotificationAction] = []
 
-        if let actionsExist = actions {
+//        if let actionsExist = actions {
+        
+            for action in actions {
+                
+                let newAction:UNNotificationAction
+                
+                if action["type"] as? String == "text" {
+                    newAction = UNTextInputNotificationAction(identifier: action["action"] as! String, title: action["title"] as! String, options: [], textInputButtonTitle: "Send", textInputPlaceholder: "")
+                } else {
+                    newAction = UNNotificationAction(identifier: action["action"] as! String, title: action["title"] as! String, options: [])
+                }
             
-            for (index, action) in actionsExist.enumerated() {
-                let newAction = UNNotificationAction(identifier: String(index), title: action, options: [])
                 
                 nativeActions.append(newAction)
             }
             
-        }
+//        }
         
         let category = UNNotificationCategory(identifier: "extended-content", actions: nativeActions, intentIdentifiers: [], options: UNNotificationCategoryOptions([.customDismissAction]))
         

@@ -48,7 +48,7 @@ class NotificationService: UNNotificationServiceExtension {
         
         
         if let actions = maybeActions {
-            PayloadToNotificationContent.setNotificationCategoryBasedOnActions(actions.components(separatedBy: ",,,"))
+//            PayloadToNotificationContent.setNotificationCategoryBasedOnActions(actions.components(separatedBy: ",,,"))
         }
         
         Promise(value: ())

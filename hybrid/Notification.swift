@@ -88,17 +88,20 @@ import UserNotifications
     var notification: Notification {get}
     var action: String {get}
     var target: String {get}
+    var reply: String? {get}
 }
 
 @objc class NotificationEvent: ExtendableEvent, NotificationEventExports {
     let notification: Notification
     let action: String
     let target: String
+    let reply: String?
     
-    init(type: String, notification:Notification, action:String = "", target:String = "") {
+    init(type: String, notification:Notification, action:String = "", target:String = "", reply:String? = nil) {
         self.notification = notification
         self.action = action
         self.target = target
+        self.reply = reply
         super.init(type: type)
     }
     
