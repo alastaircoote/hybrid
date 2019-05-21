@@ -116,8 +116,9 @@ class WebServer {
                 gcdresponse.statusCode = response.status
                 
                 for key in response.headers.keys() {
-                    if key.lowercased() == "content-encoding" {
+                    if key.lowercased() == "content-encoding" || key.lowercased() == "content-length" {
                         // the body is already ungzipped, so don't do it again
+                        // also means that the length will be incorrect, so ignore that
                         continue
                     }
                     gcdresponse.setValue(response.headers.get(key), forAdditionalHeader: key)
