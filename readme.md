@@ -10,6 +10,8 @@ Production ready in any way, shape or form. It was an extended proof of concept 
 
 Some of the ideas presented here were rewritten as part of [SWWebView](https://github.com/gdnmobilelab/SWWebView), but not things like notifications, which form a core part of the demo. SWWebView also uses the far, far more sensible method of WKURLSchemeHandler (not available when I wrote this) to intercept web requests, rather than starting up a local web server.
 
+Despite being an experimental proof of concept, it was accepted in App Store review, and was used to test [live video notifications](https://medium.com/the-guardian-mobile-innovation-lab/live-now-from-your-lock-screen-532133e22419) with the public.
+
 ## Requirements
 
 - XCode >= 8
