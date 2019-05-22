@@ -134,7 +134,8 @@ enum NotificationVideoPlayState {
                 opts = AVAudioSession.CategoryOptions.mixWithOthers
             }
             
-            try AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback), with: opts)
+            try
+               AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: opts) 
         } catch {
             log.error("Could not set audio category:" + String(describing: error))
         }

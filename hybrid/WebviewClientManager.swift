@@ -138,8 +138,8 @@ import PromiseKit
                 if SharedResources.currentExecutionEnvironment == SharedResources.ExecutionEnvironment.app {
                     // We're in the app, so we want to wait for immediate execution
                     
-                    return Promise<Void> { fulfill, reject in
-                        ev.onImmediateExecution = fulfill
+                    return Promise<()> { fulfill, reject in
+                        ev.onImmediateExecution = fulfill as? () -> ()
                         WebviewClientManager.clientEvents.emit("*", ev)
                     }
                     

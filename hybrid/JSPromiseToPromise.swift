@@ -18,7 +18,9 @@ class JSPromiseToPromise<T> {
                 reject(JSContextError(jsValue: err))
             }
             
-            let fulfillAsConvention: @convention(block) () -> () = fulfill
+        let fulfillAsConvention: @convention(block) () -> () = {
+            fulfill(())
+        }
             let rejectAsConvention: @convention(block) (JSValue) -> () = rejectConverter
         
             let bindFunc = jsPromise.context
