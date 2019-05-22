@@ -144,7 +144,6 @@
 		8ADDB6A51DDCF09500B69AE8 /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB6A31DDCF08E00B69AE8 /* HexColor.swift */; };
 		8ADDB6A71DDD197500B69AE8 /* HybridWebviewMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB6A61DDD197400B69AE8 /* HybridWebviewMetadata.swift */; };
 		8ADDB6A91DDE067200B69AE8 /* RenderCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADDB6A81DDE067200B69AE8 /* RenderCheck.swift */; };
-		8ADE58B21DF66BF2007E7A4D /* preload-workers in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE58B11DF66BF2007E7A4D /* preload-workers */; };
 		8AEEDE5C1D26CF450032D588 /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEEDE5B1D26CF450032D588 /* db.swift */; };
 		8AFA9C3A1E01FBE100368B77 /* NotificationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA9C391E01FBE100368B77 /* NotificationTextView.swift */; };
 		8AFA9C3D1E02F7A200368B77 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA9C3C1E02F7A200368B77 /* VideoView.swift */; };
@@ -809,7 +808,6 @@
 			files = (
 				D381163A1CD5AE96004A3CCD /* js-dist in Resources */,
 				8AD894711E24407700BEAA6A /* 2016120800000000.sql in Resources */,
-				8ADE58B21DF66BF2007E7A4D /* preload-workers in Resources */,
 				D31BC1171CD534CF00CF6BEB /* LaunchScreen.storyboard in Resources */,
 				D31BC1141CD534CF00CF6BEB /* Assets.xcassets in Resources */,
 				8AD8946D1E24407700BEAA6A /* 201606290.sql in Resources */,
