@@ -15,7 +15,7 @@ import PromiseKit
 /// we have a service worker running on. We use this server to pipe HTTP requests through worker fetch events when applicable.
 class WebServer {
     
-    fileprivate var server = GCDWebServer()
+    fileprivate var server:GCDWebServer? = GCDWebServer()
     
     
     /// We store the port number that GCDWebServer decides on when it first starts up, so that when the app suspends and resumes
@@ -111,7 +111,7 @@ class WebServer {
                 }
                 
                 
-                let gcdresponse = GCDWebServerDataResponse(data: response.data, contentType: contentType)!
+                let gcdresponse = GCDWebServerDataResponse(data: response.data!, contentType: contentType!)
                 
                 gcdresponse.statusCode = response.status
                 
@@ -133,7 +133,7 @@ class WebServer {
         } .catch { (err) -> Void in
             log.error(String(describing: err))
             let errAsNSData = String(describing: err).data(using: String.Encoding.utf8)!
-            let errorResponse = GCDWebServerDataResponse(data:errAsNSData, contentType: "text/plain")!
+            let errorResponse = GCDWebServerDataResponse(data:errAsNSData, contentType: "text/plain")
             errorResponse.statusCode = 500
             completionBlock!(errorResponse)
 
@@ -172,7 +172,7 @@ class WebServer {
         GlobalFetch.fetchRequest(fetchRequest)
         .then { response -> Void in
             
-            let gcdResponse = GCDWebServerDataResponse(data: response.data, contentType: response.headers.get("content-type"))!
+            let gcdResponse = GCDWebServerDataResponse(data: response.data!, contentType: response.headers.get("content-type")!)
             gcdResponse.statusCode = response.status
             
             for key in response.headers.keys() {

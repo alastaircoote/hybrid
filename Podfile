@@ -5,7 +5,7 @@ use_frameworks!
 
 
 pod 'XCGLogger', '~> 6.0.4'
-pod 'FMDB'
+pod 'FMDB', '~> 2.6.2'
 pod 'FMDBMigrationManager'
 pod 'PromiseKit', '~> 4'
 #pod 'EmitterKit', '~> 5'
@@ -24,9 +24,12 @@ target 'notification-extension' do
     
 end
 
-target 'hybridTests' do
-
-    pod 'Quick', '~> 1.3.2'
-    pod 'Nimble', '~> 7.3.3'
-    pod 'GCDWebServer', '~> 3.0'
-end
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if ['PromiseKit'].include? target.name
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4'
+        end
+      end
+    end
+  end
