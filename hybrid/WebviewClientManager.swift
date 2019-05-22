@@ -19,7 +19,7 @@ import PromiseKit
 /// stuff, like when a service worker inside the notification content calls Clients.matchAll().
 @objc class WebviewRecord : NSObject, NSCoding, WebviewRecordExports {
     var url:URL?
-    var index:Int
+    @objc var index:Int
     var workerId: Int?
     
     init(url: URL?, index: Int, workerId:Int?) {
@@ -66,7 +66,7 @@ import PromiseKit
 @objc class WebviewClientManager : NSObject, WebviewClientManagerExports {
     
 
-    let serviceWorker:ServiceWorkerInstance
+    @objc let serviceWorker:ServiceWorkerInstance
     
     
     
@@ -74,13 +74,13 @@ import PromiseKit
     /// in the notification content extension
     static let clientEvents = EventEmitter<PendingWebviewAction>()
     
-    static func resetActiveWebviewRecords() {
+    @objc static func resetActiveWebviewRecords() {
         SharedResources.userDefaults.removeObject(forKey: SharedResources.userDefaultKeys.ACTIVE_WEBVIEWS_KEY)
     }
     
     
     /// This is automatically synchronised with UserDefaults, making the records accessible cross-process.
-    static var currentWebviewRecords: [WebviewRecord] {
+    @objc static var currentWebviewRecords: [WebviewRecord] {
         
         get {
             let recordsAsData = SharedResources.userDefaults.data(forKey: SharedResources.userDefaultKeys.ACTIVE_WEBVIEWS_KEY)
@@ -199,7 +199,7 @@ import PromiseKit
         return JSPromise.resolve(nil)
     }
     
-    required init(serviceWorker:ServiceWorkerInstance) {
+    @objc required init(serviceWorker:ServiceWorkerInstance) {
         self.serviceWorker = serviceWorker
     }
 }

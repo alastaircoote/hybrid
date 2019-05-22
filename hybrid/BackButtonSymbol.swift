@@ -15,9 +15,9 @@ import CoreGraphics
 /// on our controllers. This will allow us to remove the "flash" when the back button appears.
 class BackButtonSymbol: UIButton {
     
-    var onTap:(() -> ())?
+    @objc var onTap:(() -> ())?
     
-    convenience init(onTap:@escaping () -> ()) {
+    @objc convenience init(onTap:@escaping () -> ()) {
         self.init()
         self.onTap = onTap
     }
@@ -28,7 +28,7 @@ class BackButtonSymbol: UIButton {
         self.backgroundColor = UIColor.green
     }
     
-    func tapped(_ sender: UIButton!) {
+    @objc func tapped(_ sender: UIButton!) {
         if let tap = self.onTap {
             tap()
         }
@@ -68,7 +68,7 @@ class BackButtonSymbol: UIButton {
         context.addLine(to: CGPoint(x: width * 6.0/6.0, y: height * 1.0/10.0))
         context.closePath()
         
-        let c = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: self.state == UIControlState.highlighted ? 0.15 : 1)
+        let c = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: self.state == UIControl.State.highlighted ? 0.15 : 1)
         
         context.setFillColor(c.cgColor)
         context.fillPath()

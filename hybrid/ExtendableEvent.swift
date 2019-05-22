@@ -21,8 +21,8 @@ class PromiseAlreadyResolvedError : Error {}
 @objc class ExtendableEvent : NSObject, ExtendableEventExports {
     let type: String
     
-    var waitUntilPromise:JSValue?
-    var hasResolved = false
+    @objc var waitUntilPromise:JSValue?
+    @objc var hasResolved = false
 
     required init(type:String) {
         self.type = type

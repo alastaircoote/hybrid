@@ -20,12 +20,12 @@ struct NotificationShowAction {
 
 class PendingNotificationShow: NSObject, NSCoding {
     
-    let title:String
-    let options:[String:AnyObject]
-    let pushID:String
+    @objc let title:String
+    @objc let options:[String:AnyObject]
+    @objc let pushID:String
     fileprivate let _workerURL:String
     
-    var workerURL:URL {
+    @objc var workerURL:URL {
         get {
             return URL(string: self._workerURL)!
         }
@@ -45,7 +45,7 @@ class PendingNotificationShow: NSObject, NSCoding {
         
     }
     
-    init(title:String, options:[String:AnyObject], pushID:String, workerURL:String) {
+    @objc init(title:String, options:[String:AnyObject], pushID:String, workerURL:String) {
         self.title = title
         self.options = options
         self.pushID = pushID

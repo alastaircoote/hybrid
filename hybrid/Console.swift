@@ -17,9 +17,9 @@ import JavaScriptCore
     
     /// We keep a reference to the original console so that debug messages still
     /// come through to a browser debugger we might have attached.
-    let originalConsole:JSValue
+    @objc let originalConsole:JSValue
     
-    init(context:JSContext) {
+    @objc init(context:JSContext) {
         
         self.originalConsole = context.objectForKeyedSubscript("console")
        
@@ -49,7 +49,7 @@ import JavaScriptCore
         
     }
     
-    func logFromJS(_ level:String, arguments:NSArray) {
+    @objc func logFromJS(_ level:String, arguments:NSArray) {
         
         if self.originalConsole.isUndefined == false {
             self.originalConsole

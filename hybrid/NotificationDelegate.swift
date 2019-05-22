@@ -14,7 +14,7 @@ import UIKit
 
 class NotificationDelegate : NSObject, UNUserNotificationCenterDelegate {
     
-    static var allowedNotificationIDs: [String] = []
+    @objc static var allowedNotificationIDs: [String] = []
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
@@ -48,7 +48,7 @@ class NotificationDelegate : NSObject, UNUserNotificationCenterDelegate {
     }
     
     
-    static func processPendingActions() {
+    @objc static func processPendingActions() {
         let pendingActions = PendingWebviewActions.getAll()
         
         pendingActions.forEach { event in

@@ -33,12 +33,12 @@ enum NotificationVideoPlayState {
 
 @objc class NotificationVideo : NSObject, NotificationVideoExports {
     
-    let playerController:AVPlayerViewController
+    @objc let playerController:AVPlayerViewController
     let events = EventEmitter<NotificationVideoPlayState>()
     
     var loop:Bool = true
     var autoplay:Bool = true
-    var muted:Bool = true
+    @objc var muted:Bool = true
     
     var isPlaying:Bool = false
     
@@ -71,12 +71,12 @@ enum NotificationVideoPlayState {
         }
     }
     
-    init(videoURL:URL, options:[String: Any] = [:]) {
+    @objc init(videoURL:URL, options:[String: Any] = [:]) {
         self.videoURL = videoURL
         self.playerController = AVPlayerViewController()
         self.playerController.player = AVPlayer(url: videoURL)
         self.playerController.showsPlaybackControls = false
-        self.playerController.view.autoresizingMask = UIViewAutoresizing()
+        self.playerController.view.autoresizingMask = UIView.AutoresizingMask()
 
         
         if let autoplay = options["autoplay"] as? Bool {
@@ -126,23 +126,23 @@ enum NotificationVideoPlayState {
         
     }
     
-    func setAudioCategory(muted:Bool) {
+    @objc func setAudioCategory(muted:Bool) {
         do {
-            var opts: AVAudioSessionCategoryOptions = []
+            var opts: AVAudioSession.CategoryOptions = []
             
             if muted {
-                opts = AVAudioSessionCategoryOptions.mixWithOthers
+                opts = AVAudioSession.CategoryOptions.mixWithOthers
             }
             
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: opts)
+            try AVAudioSession.sharedInstance().setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playback), with: opts)
         } catch {
             log.error("Could not set audio category:" + String(describing: error))
         }
     }
     
-    func loopIfNeeded(_ notification: Foundation.Notification) {
+    @objc func loopIfNeeded(_ notification: Foundation.Notification) {
         if self.loop == true {
-            self.playerController.player!.seek(to: kCMTimeZero)
+            self.playerController.player!.seek(to: CMTime.zero)
             self.playerController.player!.play()
         } else {
             self.isPlaying = false
@@ -171,4 +171,9 @@ enum NotificationVideoPlayState {
         self.setAudioCategory(muted: false)
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

@@ -17,9 +17,9 @@ import JavaScriptCore
 /// Based on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData, but actually just uses FetchBody
 @objc class PushMessageData : NSObject, PushMessageDataExports {
     
-    let pushData:Data
+    @objc let pushData:Data
     
-    init(data:Data) {
+    @objc init(data:Data) {
         self.pushData = data
     }
     

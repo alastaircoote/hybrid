@@ -29,7 +29,7 @@ class CannotEnablePushNotificationsError : Error {}
     var device_id:String
     var sandbox:Bool
     
-    init(bundleName: String, deviceId:String, sandbox:Bool) {
+    @objc init(bundleName: String, deviceId:String, sandbox:Bool) {
         self.bundle_name = bundleName
         self.device_id = deviceId
         self.sandbox = sandbox
@@ -63,7 +63,7 @@ class CannotEnablePushNotificationsError : Error {}
     fileprivate static var deviceTokenListener:Listener<Any>?
     fileprivate static var deviceToken:String?
     
-    static func listenForDeviceToken() {
+    @objc static func listenForDeviceToken() {
         self.deviceTokenListener = ApplicationEvents.on("didRegisterForRemoteNotificationsWithDeviceToken", { token in
             let deviceToken = token as! Data
             
@@ -78,7 +78,7 @@ class CannotEnablePushNotificationsError : Error {}
         })
     }
     
-    static func isAPNSSandbox() -> Bool {
+    @objc static func isAPNSSandbox() -> Bool {
         #if IS_DEBUG
             return true
         #else
@@ -134,7 +134,7 @@ class CannotEnablePushNotificationsError : Error {}
     }
 
     
-    func _getSubscription() -> PushSubscription? {
+    @objc func _getSubscription() -> PushSubscription? {
         if PushManager.deviceToken == nil {
             
             // If we don't have the device token yet then we don't technically have a

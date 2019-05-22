@@ -77,7 +77,7 @@ class RenderCheck {
         if self.checkIfRendered() == true {
             log.debug("Checked if webview was ready, it WAS")
             self.pixel!.deinitialize()
-            self.displayLink!.remove(from: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+            self.displayLink!.remove(from: RunLoop.main, forMode: RunLoop.Mode.default)
             self.displayLink = nil
             self.target.evaluateJavaScript(WebviewJS.removeLoadingIndicator, completionHandler: nil)
             self.onRender!()
@@ -106,7 +106,7 @@ class RenderCheck {
         self.target.evaluateJavaScript(WebviewJS.setLoadingIndicator, completionHandler: nil)
 
         self.displayLink = CADisplayLink(target: self, selector: #selector(self.checkForRender))
-        self.displayLink!.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
 
     }
 }

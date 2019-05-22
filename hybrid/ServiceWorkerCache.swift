@@ -33,12 +33,12 @@ struct RequestAndResponse {
 /// An implementation of the Cache API: https://developer.mozilla.org/en-US/docs/Web/API/Cache
 @objc class ServiceWorkerCache: NSObject, ServiceWorkerCacheExports {
     
-    let serviceWorkerURL:URL
-    let serviceWorkerScope:URL
-    let name:String
+    @objc let serviceWorkerURL:URL
+    @objc let serviceWorkerScope:URL
+    @objc let name:String
     
     
-    init(swURL:URL, swScope:URL, name:String) {
+    @objc init(swURL:URL, swScope:URL, name:String) {
         self.serviceWorkerURL = swURL
         self.serviceWorkerScope = swScope
         self.name = name

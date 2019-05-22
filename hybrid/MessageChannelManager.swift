@@ -44,12 +44,12 @@ class MessagePortMessage {
 /// side when a channel is finished with.
 class MessageChannelManager: ScriptMessageManager {
     
-    var activePorts = [Int: MessagePort]()
+    @objc var activePorts = [Int: MessagePort]()
     var portListeners = [Int:Listener<ExtendableMessageEvent?>]()
     var closeListeners = [Int:Listener<ExtendableMessageEvent?>]()
-    var onMessage: ((Any, [MessagePort]) -> Void)? = nil
+    @objc var onMessage: ((Any, [MessagePort]) -> Void)? = nil
     
-    init(userController:WKUserContentController, webView:HybridWebview) {
+    @objc init(userController:WKUserContentController, webView:HybridWebview) {
         super.init(userController: userController, webView: webView, handlerName: "messageChannel")
     }
     
@@ -103,7 +103,7 @@ class MessageChannelManager: ScriptMessageManager {
     ///   - portIndex: The index of the port to send to
     ///   - data: The data to send - a string, usually a JSON string, but not necessarily
     ///   - additionalPortIndexes: The additional ports to attach to postMessage() as a secondary argument
-    func sendToPort(_ portIndex:Int, jsonString:String, additionalPortIndexes:[Int]) {
+    @objc func sendToPort(_ portIndex:Int, jsonString:String, additionalPortIndexes:[Int]) {
         let port = self.activePorts[portIndex]
         
         if port == nil {
@@ -132,7 +132,7 @@ class MessageChannelManager: ScriptMessageManager {
     ///
     /// - Parameter port: The port to add to our port collection
     /// - Returns: The new index for the port we've added
-    func manuallyAddPort(_ port:MessagePort) -> Int {
+    @objc func manuallyAddPort(_ port:MessagePort) -> Int {
         // only really called directly during testing
         
         for (index, iteratePort) in self.activePorts {
@@ -186,7 +186,7 @@ class MessageChannelManager: ScriptMessageManager {
     /// Create a new port and add it to the store
     ///
     /// - Returns: The index of the newly created port
-    func createNewPort() -> Int {
+    @objc func createNewPort() -> Int {
         return self.manuallyAddPort(MessagePort())
     }
     
@@ -194,7 +194,7 @@ class MessageChannelManager: ScriptMessageManager {
     /// Remove a port from the store
     ///
     /// - Parameter index: The index of the port to remove
-    func deletePort(_ index:Int) {
+    @objc func deletePort(_ index:Int) {
         log.info("Deleting port #" + String(index))
         
         self.activePorts.removeValue(forKey: index)

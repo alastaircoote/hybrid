@@ -30,7 +30,7 @@ import JavaScriptCore
     
     /// We track whether the port is pending execution inside a webview - this is used to
     /// stop from emitting close events too early.
-    var pendingJSExecution: Bool {
+    @objc var pendingJSExecution: Bool {
         
         get {
             return self._pendingJSExecution
@@ -74,7 +74,7 @@ import JavaScriptCore
         self.postMessage(data, ports: ports, fromWebView: nil)
     }
     
-    func postMessage(_ data:Any, ports:[MessagePort], fromWebView:WKWebView?) {
+    @objc func postMessage(_ data:Any, ports:[MessagePort], fromWebView:WKWebView?) {
         self.events.emit("emit", ExtendableMessageEvent(data: data, ports: ports,fromWebView: fromWebView))
     }
     

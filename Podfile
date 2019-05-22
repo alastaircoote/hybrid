@@ -4,7 +4,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 
-pod 'XCGLogger', '~> 4.0.0'
+pod 'XCGLogger', '~> 6.0.4'
 pod 'FMDB'
 pod 'FMDBMigrationManager'
 pod 'PromiseKit', '~> 4'
@@ -26,7 +26,7 @@ end
 
 target 'hybridTests' do
 
-    pod 'Quick'
-    pod 'Nimble'
+    pod 'Quick', '~> 1.3.2'
+    pod 'Nimble', '~> 7.3.3'
     pod 'GCDWebServer', '~> 3.0'
 end

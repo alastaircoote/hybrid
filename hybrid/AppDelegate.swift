@@ -15,20 +15,20 @@ import GCDWebServer
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private static var window: UIWindow?
-    static var rootController:HybridNavigationController?
+    @objc static var rootController:HybridNavigationController?
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = NotificationDelegateInstance
         return true
     }
     
-    static var runningInTests:Bool {
+    @objc static var runningInTests:Bool {
         get {
             return NSClassFromString("XCTest") != nil
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         SharedResources.currentExecutionEnvironment = SharedResources.ExecutionEnvironment.app
         
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             var pushDefault = false
             
-            if launchOptions == nil || launchOptions![UIApplicationLaunchOptionsKey.url] == nil {
+            if launchOptions == nil || launchOptions![UIApplication.LaunchOptionsKey.url] == nil {
                 pushDefault = true
             }
             
@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
 //    }
     
-    func pushDefaultStartURL() {
+    @objc func pushDefaultStartURL() {
         let initialURL = Bundle.main.object(forInfoDictionaryKey: "INITIAL_URL") as! String
         
         log.info("Loading default homepage:" + initialURL)
@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        if UIApplication.shared.applicationState == UIApplicationState.background {
+        if UIApplication.shared.applicationState == UIApplication.State.background {
             
             // If we're in the background we can't suppress the remote notification. So
             // we let it show, and store our pending notification show data, to be added
@@ -184,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
         if userActivity.activityType != "NSUserActivityTypeBrowsingWeb" {
             

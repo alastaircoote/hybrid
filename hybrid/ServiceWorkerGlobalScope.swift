@@ -16,10 +16,10 @@ import JavaScriptCore
 /// A work in progress. In time I want to move all of the custom classes into here.
 @objc class ServiceWorkerGlobalScope: NSObject, ServiceWorkerGlobalScopeExports {
     
-    var skipWaitingStatus = false
-    var jsContext:JSContext
+    @objc var skipWaitingStatus = false
+    @objc var jsContext:JSContext
     
-    init(context:JSContext) {
+    @objc init(context:JSContext) {
         self.jsContext = context
         super.init()
         self.applySelfToGlobal()
@@ -39,7 +39,7 @@ import JavaScriptCore
     
     /// Go through all of our global scope objects, apply to "self" *and* to the
     /// global scope of the worker. Using Object.keys() feels like of hacky, but it works.
-    func applySelfToGlobal() {
+    @objc func applySelfToGlobal() {
         
         self.jsContext.setObject(ServiceWorkerGlobalScope.self, forKeyedSubscript: "ServiceWorkerGlobalScope" as (NSCopying & NSObjectProtocol)!)
         self.jsContext.setObject(self, forKeyedSubscript: "self" as (NSCopying & NSObjectProtocol)!)

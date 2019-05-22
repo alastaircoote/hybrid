@@ -48,17 +48,17 @@ import PromiseKit
 class CanvasView: UIView {
     
 //    private var canvasData: CanvasEvent?
-    let canvas:OffscreenCanvas
+    @objc let canvas:OffscreenCanvas
     fileprivate let worker: ServiceWorkerInstance
     fileprivate var displayLink:CADisplayLink?
     fileprivate let notification:Notification
-    let proportion:CGFloat
+    @objc let proportion:CGFloat
     
     fileprivate static func multiplyByRatio(_ num:CGFloat) -> Int {
         return Int(num * UIScreen.main.scale)
     }
     
-    init(width: CGFloat, proportion: CGFloat, worker: ServiceWorkerInstance, notification:Notification) {
+    @objc init(width: CGFloat, proportion: CGFloat, worker: ServiceWorkerInstance, notification:Notification) {
         
         let height = width / proportion
         self.worker = worker
@@ -76,19 +76,19 @@ class CanvasView: UIView {
         self.isOpaque = false
         
         self.displayLink = CADisplayLink(target: self, selector: #selector(self.runUpdate))
-        self.displayLink!.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
         
     }
     
     override func removeFromSuperview() {
         super.removeFromSuperview()
-        self.displayLink!.remove(from: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.displayLink!.remove(from: RunLoop.main, forMode: RunLoop.Mode.default)
     }
     
-    var wantsAnimationFrame:Bool = true
-    var pendingRender = false
+    @objc var wantsAnimationFrame:Bool = true
+    @objc var pendingRender = false
     
-    func runUpdate() {
+    @objc func runUpdate() {
 
         if self.wantsAnimationFrame == true && self.pendingRender == false {
             self.wantsAnimationFrame = false
@@ -106,7 +106,7 @@ class CanvasView: UIView {
         
     }
     
-    func requestAnimationFrame() {
+    @objc func requestAnimationFrame() {
         self.wantsAnimationFrame = true
     }
     

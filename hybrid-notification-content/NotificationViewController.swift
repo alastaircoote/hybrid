@@ -16,15 +16,15 @@ import AVFoundation
 @objc(NotificationViewController)
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
 
-    var notificationViews = [UIView]()
+    @objc var notificationViews = [UIView]()
     
-    var latestUserInfo:[AnyHashable: Any]? = nil
+    @objc var latestUserInfo:[AnyHashable: Any]? = nil
     
-    var notificationShowData:PendingNotificationShow?
-    var notificationInstance:Notification?
-    var currentVideoView:VideoView?
-    var currentCanvasView:CanvasView?
-    var interactiveViewContainer = UIView()
+    @objc var notificationShowData:PendingNotificationShow?
+    @objc var notificationInstance:Notification?
+    @objc var currentVideoView:VideoView?
+    @objc var currentCanvasView:CanvasView?
+    @objc var interactiveViewContainer = UIView()
     
     static var webviewEventListener:Listener<PendingWebviewAction>?
     
@@ -62,7 +62,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     
     
-    func removeAllViews() {
+    @objc func removeAllViews() {
         self.notificationViews.forEach { view in
             view.removeFromSuperview()
         }
@@ -254,7 +254,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         
     }
     
-    func sendExpandedNotificationClick() {
+    @objc func sendExpandedNotificationClick() {
         NotificationHandler.sendNotificationEvent(type: "notificationclick", self.notificationInstance!, target: "interactivearea")
         .then { () -> Void in
             
@@ -379,7 +379,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
     }
 
-    func openURLInAppOrExternal(action:PendingWebviewAction) {
+    @objc func openURLInAppOrExternal(action:PendingWebviewAction) {
         var url = URL(string: "gdnmobilelab://")!
         
         // using first because we sort of have to, also no-one should ever want to open two windows

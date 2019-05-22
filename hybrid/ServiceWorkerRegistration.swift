@@ -31,10 +31,10 @@ import PromiseKit
 /// A port of web ServiceWorkerRegistration: https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
 @objc class ServiceWorkerRegistration: NSObject, ServiceWorkerRegistrationExports {
     var pushManager:PushManager
-    var worker:ServiceWorkerInstance
+    @objc var worker:ServiceWorkerInstance
     
-    var storeNotificationShowWithID:String?
-    static var suppressNotificationShow:Bool = false
+    @objc var storeNotificationShowWithID:String?
+    @objc static var suppressNotificationShow:Bool = false
     
     
     /// For compatibility with the JS API - we need scope to be accessible at the registration level
@@ -72,14 +72,14 @@ import PromiseKit
     }
 
     
-    init(worker:ServiceWorkerInstance) {
+    @objc init(worker:ServiceWorkerInstance) {
         self.pushManager = PushManager()
         self.worker = worker
     }
     
     
     /// No idea why, but identifiers with dashes in them seem to be problematic.
-    func makeTagNameSafe(_ tag:String) -> String {
+    @objc func makeTagNameSafe(_ tag:String) -> String {
         return tag.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)!
     }
     
@@ -170,7 +170,7 @@ import PromiseKit
                 content.body = body
             }
             
-            content.sound = UNNotificationSound.default()
+            content.sound = UNNotificationSound.default
 
             
             if let tag = options["tag"] as? String {

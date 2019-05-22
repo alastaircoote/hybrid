@@ -162,12 +162,12 @@ class Db {
 
 class CustomMigration : NSObject, FMDBMigrating {
     
-    let sql:String
+    @objc let sql:String
     let name:String
     let version:UInt64
     
     
-    init(name: String, sql:String) {
+    @objc init(name: String, sql:String) {
         self.version = UInt64(name)!
         self.name = name
         self.sql = sql

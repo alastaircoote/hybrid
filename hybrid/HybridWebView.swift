@@ -14,15 +14,15 @@ import PromiseKit
 /// of active webviews.
 class HybridWebview : WKWebView, WKNavigationDelegate {
     
-    var console:ConsoleManager?
-    var messageChannelManager:MessageChannelManager?
-    var notificationPermissionHandler:NotificationPermissionHandler?
-    var serviceWorkerAPI:ServiceWorkerAPI?
-    var eventManager: EventManager?
+    @objc var console:ConsoleManager?
+    @objc var messageChannelManager:MessageChannelManager?
+    @objc var notificationPermissionHandler:NotificationPermissionHandler?
+    @objc var serviceWorkerAPI:ServiceWorkerAPI?
+    @objc var eventManager: EventManager?
     
-    let readyStateHandler = ReadyStateHandler()
+    @objc let readyStateHandler = ReadyStateHandler()
     
-    var isActive:Bool = false
+    @objc var isActive:Bool = false
     
     
     /// A store for all the active webviews currently in use by the app
@@ -37,7 +37,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     /// Registers this webview for things like WebviewClientManager events. Claim, postMessage, etc. Also
     /// sets the static webviewClientListener variable. For some reason EmitterKit doesn't let you
     /// declare a listener in the class directly, so instead we set it the first time we register a webview.
-    func registerWebviewForServiceWorkerEvents() {
+    @objc func registerWebviewForServiceWorkerEvents() {
         if HybridWebview.activeWebviews.contains(self) {
             return
         }
@@ -56,7 +56,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     
     
     /// Again for cross-process communication, we save a record of all the active webviews to UserDefaults.
-    static func saveWebViewRecords() {
+    @objc static func saveWebViewRecords() {
         
         // We need to save this somewhere that out-of-app code can still access it
         
@@ -75,7 +75,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     ///
     /// - Parameter index: index of webview to fetch
     /// - Returns: The hybrid webview at that index
-    static func getActiveWebviewAtIndex(_ index:Int) -> HybridWebview {
+    @objc static func getActiveWebviewAtIndex(_ index:Int) -> HybridWebview {
         return self.activeWebviews[index]
     }
     
@@ -84,7 +84,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     /// we want to stop it from receiving any worker events.
     ///
     /// - Parameter hw: HybridWebview to remove
-    static func deregisterWebviewFromServiceWorkerEvents(_ hw: HybridWebview) {
+    @objc static func deregisterWebviewFromServiceWorkerEvents(_ hw: HybridWebview) {
         let idx = HybridWebview.activeWebviews.index(of: hw)
         HybridWebview.activeWebviews.remove(at: idx!)
         saveWebViewRecords()
@@ -95,7 +95,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     /// Covers claim, focus, openWindow and postMessage events.
     ///
     /// - Parameter event: WebviewClientEvent, either applied directly or taken from UserDefaults storage
-    static func processClientEvent(_ event:PendingWebviewAction) {
+    @objc static func processClientEvent(_ event:PendingWebviewAction) {
         if event.type == PendingWebviewActionType.claim {
             let webView = HybridWebview.activeWebviews[event.record!.index]
             
@@ -148,7 +148,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     
     /// Remove all registered webviews. Since this data is stored in UserDefaults it persists across
     /// app launches. We need to reset it on launch or we'll have stale data.
-    static func clearRegisteredWebviews() {
+    @objc static func clearRegisteredWebviews() {
         activeWebviews.removeAll()
     }
     
@@ -183,7 +183,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
         self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         config.userContentController.add(self.readyStateHandler, name: ReadyStateHandler.name)
-        self.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
+        self.scrollView.decelerationRate = UIScrollView.DecelerationRate.normal
 
         self.allowsLinkPreview = false
         
@@ -276,7 +276,7 @@ class HybridWebview : WKWebView, WKNavigationDelegate {
     
     
     /// Transform the raw URL into a remote URL, if it happens to be running on localhost. If not, just return the current URL
-    var mappedURL:URL? {
+    @objc var mappedURL:URL? {
         get {
             let currentURL = self.url
             if currentURL == nil {

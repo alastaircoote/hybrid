@@ -11,7 +11,7 @@ import UIKit
 
 class NotificationTextView : UIView {
     
-    init(title: String, body: String, frame: CGRect) {
+    @objc init(title: String, body: String, frame: CGRect) {
         
         super.init(frame: CGRect(x:0,y:0,width: frame.width, height: 0))
         
@@ -26,7 +26,7 @@ class NotificationTextView : UIView {
         titleView.lineBreakMode = NSLineBreakMode.byWordWrapping
         titleView.numberOfLines = 0
         
-        let desc = titleView.font.fontDescriptor.withSymbolicTraits(UIFontDescriptorSymbolicTraits.traitBold)
+        let desc = titleView.font.fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits.traitBold)
         titleView.font = UIFont(descriptor: desc!, size: UIFont.labelFontSize)
         titleView.sizeToFit()
         

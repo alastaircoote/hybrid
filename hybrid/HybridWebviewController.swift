@@ -21,19 +21,19 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
     
     let events = EventEmitter<HybridWebviewController>()
     
-    var webview:HybridWebview? {
+    @objc var webview:HybridWebview? {
         get {
             return self.view as? HybridWebview
         }
     }
     
-    var hybridNavigationController:HybridNavigationController? {
+    @objc var hybridNavigationController:HybridNavigationController? {
         get {
             return self.navigationController as? HybridNavigationController
         }
     }
 
-    let titleTextView:UILabel
+    @objc let titleTextView:UILabel
     
     init() {
         self.titleTextView = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
@@ -47,7 +47,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
         // Don't show text in back button - it's causing some odd display problems
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        self.titleTextView.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        self.titleTextView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         self.titleTextView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.titleTextView.textAlignment = .center
 //        self.titleTextView.adjustsFontSizeToFitWidth = true
@@ -62,7 +62,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
     /// and also tracks page load time for logging purposes
     ///
     /// - Parameter urlToLoad: The full, remote URL we want to load. Do not pass in a URL already mapped to localhost.
-    func loadURL(_ urlToLoad:URL, attemptAcceleratedLoad: Bool = false) {
+    @objc func loadURL(_ urlToLoad:URL, attemptAcceleratedLoad: Bool = false) {
         
         if urlToLoad.host == "localhost" {
             log.error("Should never directly load a localhost URL - should be a server URL")
@@ -101,7 +101,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
         
     }
     
-    func injectHTMLDirectly(_ urlToLoad:URL) {
+    @objc func injectHTMLDirectly(_ urlToLoad:URL) {
         GlobalFetch.fetch(urlToLoad.absoluteString)
         .then { response in
             
@@ -122,7 +122,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
             
             let match = matches[0]
             
-            let range = match.rangeAt(1)
+            let range = match.range(at: 1)
             
             let r = responseAsString.characters.index(responseAsString.startIndex, offsetBy: range.location) ..< responseAsString.characters.index(responseAsString.startIndex, offsetBy: range.location+range.length)
             
@@ -150,7 +150,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
                         if err != nil {
                             reject(err!)
                         }
-                        fulfill()
+                        fulfill(())
                         
                     })
                 }
@@ -173,7 +173,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
     /// Right now there is a flash of the back button when we manually add a view behind the current one.
     /// There's code here for adding a back button manually, but it stops back swiping from working, so it's
     /// commented out for now.
-    func prepareHeaderControls(_ alreadyHasBackControl:Bool) {
+    @objc func prepareHeaderControls(_ alreadyHasBackControl:Bool) {
         
         // We've included the ability for webviews to specify a default "back" URL, but if
         // we already have a back control then we don't need to use it.
@@ -224,7 +224,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
             // been called with _blank
             
             
-            UIApplication.shared.open(intendedURL, options: [:], completionHandler: { (success) in
+            UIApplication.shared.open(intendedURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
                 log.info("Attempt to open URL: " + intendedURL.absoluteString + " resulted in:" + String(success))
             })
         } else {
@@ -253,7 +253,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
     }
     
     
-    func fireReadyEvent() {
+    @objc func fireReadyEvent() {
         let w:Promise<Void> = when(fulfilled: [
             self.waitForRendered(),
             self.setMetadata()
@@ -272,7 +272,7 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
 
     }
     
-    func checkReadyState(_ readyState:String) {
+    @objc func checkReadyState(_ readyState:String) {
         if readyState == "interactive" || readyState == "complete" {
             self.webview!.readyStateHandler.onchange = nil
             
@@ -344,13 +344,13 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
         fatalError("init(coder:) has not been implemented")
     }
     
-    var screenshotView:UIImageView?
+    @objc var screenshotView:UIImageView?
     
     
     /// When a user has tapped on a link we need to simulate the phone thread being taken up
     /// , sort of, anyway - if you can continue to scroll it looks weird. So we take a screenshot
     /// then place it on top of the view. We remove it again when the view is popped.
-    func placeScreenshotOnTopOfView() {
+    @objc func placeScreenshotOnTopOfView() {
         UIGraphicsBeginImageContextWithOptions(self.webview!.frame.size, false, 0)
         
         let withoutYOffset = CGRect(x:0, y: 0, width:self.webview!.frame.width, height: self.webview!.frame.height)
@@ -366,9 +366,14 @@ class HybridWebviewController : UIViewController, WKNavigationDelegate, WKUIDele
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         
-        let alert = UIAlertController(title: webView.title!, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: webView.title!, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: completionHandler)
         
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

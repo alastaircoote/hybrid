@@ -24,7 +24,7 @@ import JavaScriptCore
     var url:String
     var id:String
     
-    init(url:String, uniqueId:String) {
+    @objc init(url:String, uniqueId:String) {
         self.url = url
         self.id = uniqueId
     }

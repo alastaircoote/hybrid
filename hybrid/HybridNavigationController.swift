@@ -18,13 +18,13 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     /// Feels very hacky, but we create a view that sits 1px to the right of the edge of the screen where we
     /// store HybridWebviews that we can immediately push into our view stack. This seems to have a significant
     /// benefit in loading times.
-    let waitingArea:UIView
+    @objc let waitingArea:UIView
     
     
     /// We manually recreate the launch view storyboard in order to seamlessly pass off from the launch view to our
     /// controller without any visual difference. Then when our first webview has rendered successfully we transition
     /// the launch view out.
-    var launchViewController:UIViewController?
+    @objc var launchViewController:UIViewController?
     
     init() {
         self.waitingArea = UIView()
@@ -41,7 +41,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     }
     
     /// Take the launch storyboard and manually add it on top of our existing view stack.
-    func addLaunchViewToController() {
+    @objc func addLaunchViewToController() {
         let storyBoard = UIStoryboard(name: "LaunchScreen", bundle: nil)
         self.launchViewController = storyBoard.instantiateInitialViewController()!
         self.view.addSubview(self.launchViewController!.view)
@@ -72,7 +72,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     
     /// An array of HybridWebviewControllers that we have available to be used immediately
     /// when we want to push a new view into our stack
-    var waitingAreaViewControllers = [HybridWebviewController]()
+    @objc var waitingAreaViewControllers = [HybridWebviewController]()
     
     
     /// Grab the next available controller in the waiting area, remove from our array of
@@ -80,7 +80,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     /// and return it immediately.
     ///
     /// - Returns: a HybridWebviewController whose view is currently rendering in the waiting area.
-    func getNewController() -> HybridWebviewController {
+    @objc func getNewController() -> HybridWebviewController {
         let inWaitingArea = waitingAreaViewControllers.last
        
         if inWaitingArea != nil /*&& inWaitingArea!.isReady == true*/ {
@@ -131,7 +131,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     /// - Parameters:
     ///   - controller: The controller to add and reset
     ///   - forDomain: Currently not used, but might be reactivated to improve load times by using direct HTML injection in the future
-    func addControllerAndViewToWaitingArea(_ controller: HybridWebviewController, forDomain: URL) {
+    @objc func addControllerAndViewToWaitingArea(_ controller: HybridWebviewController, forDomain: URL) {
         controller.webview!.isActive = false
         self.addControllerToWaitingArray(controller)
         self.addViewToWaitingArea(controller.webview!)
@@ -173,7 +173,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     /// view stack.
     ///
     /// - Parameter hybrid: The controller that has been popped.
-    func addPoppedViewBackToWaitingStack(_ hybrid:HybridWebviewController) {
+    @objc func addPoppedViewBackToWaitingStack(_ hybrid:HybridWebviewController) {
         // Once this has been pushed off the stack, reset it with
         // the placeholder URL for the new top domain
         
@@ -194,7 +194,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     /// when it is ready.
     ///
     /// - Parameter url: The URL to load. Not localhost URL - is mapped automatically.
-    func pushNewHybridWebViewControllerFor(_ url:URL, animated:Bool = true) {
+    @objc func pushNewHybridWebViewControllerFor(_ url:URL, animated:Bool = true) {
         
         self.prepareWebviewFor(url, attemptAcceleratedLoading: true)
         .then { newInstance -> Void in
@@ -215,7 +215,7 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     
     /// Transition the launch view out of view by making transparent and scaling outwards
     /// then removing the view entirely once that transition is complete
-    func hideLaunchView() {
+    @objc func hideLaunchView() {
         let viewController = self.launchViewController!
         self.launchViewController = nil
         
@@ -255,23 +255,23 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
         if isBright == false {
             self.navigationBar.tintColor = UIColor.white
             self.statusBarStyle = UIStatusBarStyle.lightContent
-            self.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: UIColor.white
-            ]
+            self.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([
+                NSAttributedString.Key.foregroundColor.rawValue: UIColor.white
+            ])
             
         } else {
             self.navigationBar.tintColor = UIColor.black
             self.statusBarStyle = UIStatusBarStyle.default
-            self.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: UIColor.black
-            ]
+            self.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([
+                NSAttributedString.Key.foregroundColor.rawValue: UIColor.black
+            ])
         }
         
         self.setNeedsStatusBarAppearanceUpdate()
         
     }
     
-    var bottomBorderView:UIView?
+    @objc var bottomBorderView:UIView?
     
     
     /// When a controller show is complete, we check to see if there is a controller in the waiting area - if not, create one.
@@ -323,14 +323,20 @@ class HybridNavigationController : UINavigationController, UINavigationControlle
     
     
     /// The main HybridNavigationController the app uses. We only ever need one.
-    static var current:HybridNavigationController?
+    @objc static var current:HybridNavigationController?
     
     
     /// Create our main controller. Called in our AppDelegate.
-    static func create() -> HybridNavigationController {
+    @objc static func create() -> HybridNavigationController {
         self.current = HybridNavigationController()
         return self.current!
     }
     
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

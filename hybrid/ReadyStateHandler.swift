@@ -11,9 +11,9 @@ import WebKit
 
 class ReadyStateHandler: NSObject, WKScriptMessageHandler {
     
-    static let name = "readyStateHandler"
+    @objc static let name = "readyStateHandler"
     
-    var onchange: ((String) -> ())?
+    @objc var onchange: ((String) -> ())?
     
     @objc func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         

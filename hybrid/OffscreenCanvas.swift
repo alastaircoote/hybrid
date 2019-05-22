@@ -48,7 +48,7 @@ import UIKit
         self.twoDContext = OffscreenCanvasRenderingContext2D(width: width, height: height)
     }
     
-    init(existingContext: CGContext) {
+    @objc init(existingContext: CGContext) {
         self.width = existingContext.width
         self.height = existingContext.height
         self.twoDContext = OffscreenCanvasRenderingContext2D(context: existingContext)

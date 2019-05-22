@@ -72,7 +72,7 @@ import UIKit
 
 @objc class OffscreenCanvasRenderingContext2D: NSObject, OffscreenCanvasRenderingContext2DExports {
     
-    let context: CGContext
+    @objc let context: CGContext
     
     required init(width: Int, height: Int) {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -80,7 +80,7 @@ import UIKit
     }
     
     
-    init(context:CGContext) {
+    @objc init(context:CGContext) {
         self.context = context;
     }
     
@@ -101,7 +101,7 @@ import UIKit
         self.context.restoreGState()
     }
     
-    func toImage() -> CGImage {
+    @objc func toImage() -> CGImage {
         let imageRef = self.context.makeImage()
         return imageRef!
     }
@@ -175,7 +175,7 @@ import UIKit
         self.context.strokePath()
     }
     
-    func getBitmapFromArgument(_ arg:JSValue) -> ImageBitmap? {
+    @objc func getBitmapFromArgument(_ arg:JSValue) -> ImageBitmap? {
         
         var targetBitmap:ImageBitmap?
         
@@ -189,11 +189,11 @@ import UIKit
         return targetBitmap
     }
     
-    func drawImage(_ bitmap:ImageBitmap, dx: CGFloat, dy: CGFloat) {
+    @objc func drawImage(_ bitmap:ImageBitmap, dx: CGFloat, dy: CGFloat) {
         self.drawImage(bitmap, dx: dx, dy: dy, dWidth: CGFloat(bitmap.width), dHeight: CGFloat(bitmap.height))
     }
     
-    func drawImage(_ bitmap:ImageBitmap, dx: CGFloat, dy: CGFloat, dWidth:CGFloat, dHeight: CGFloat) {
+    @objc func drawImage(_ bitmap:ImageBitmap, dx: CGFloat, dy: CGFloat, dWidth:CGFloat, dHeight: CGFloat) {
         
         // -dy because of this transform stuff
         
@@ -260,7 +260,7 @@ import UIKit
         
     }
     
-    func drawImage(_ bitmap:ImageBitmap, sx: CGFloat, sy: CGFloat, sWidth: CGFloat, sHeight: CGFloat, dx:CGFloat, dy: CGFloat, dWidth:CGFloat, dHeight:CGFloat) {
+    @objc func drawImage(_ bitmap:ImageBitmap, sx: CGFloat, sy: CGFloat, sWidth: CGFloat, sHeight: CGFloat, dx:CGFloat, dy: CGFloat, dWidth:CGFloat, dHeight:CGFloat) {
         
         let sourceRect = CGRect(x: sx, y: sy, width: sWidth, height: sHeight)
         

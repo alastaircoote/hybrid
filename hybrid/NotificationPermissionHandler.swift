@@ -15,7 +15,7 @@ import UserNotifications
 /// Handles Notification.requestPermission(): https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission
 class NotificationPermissionHandler: ScriptMessageManager {
 
-    init(userController:WKUserContentController, webView:HybridWebview) {
+    @objc init(userController:WKUserContentController, webView:HybridWebview) {
         super.init(userController: userController, webView: webView, handlerName: "notifications")
     }
     
@@ -37,7 +37,7 @@ class NotificationPermissionHandler: ScriptMessageManager {
     ///
     /// - Parameter status: The UNAuthorizationStatus
     /// - Returns: A string derived from the status
-    func authStatusToBrowserString(_ status:UNAuthorizationStatus) -> String {
+    @objc func authStatusToBrowserString(_ status:UNAuthorizationStatus) -> String {
         if status == UNAuthorizationStatus.authorized {
             return "granted"
         }

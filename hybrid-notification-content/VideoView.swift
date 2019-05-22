@@ -12,8 +12,8 @@ import UserNotifications
 
 class VideoView : UIView {
     
-    let videoInstance:NotificationVideo
-    let context:NSExtensionContext
+    @objc let videoInstance:NotificationVideo
+    @objc let context:NSExtensionContext
     var videoPlayListener:Listener<NotificationVideoPlayState>?
     
     private let opts:VideoViewOptions
@@ -56,12 +56,12 @@ class VideoView : UIView {
         return VideoViewOptions(proportion: proportion, videoURL: videoURL)
     }
     
-    func optionsMatch(newOptions: [String:Any], workerURL:URL, attachments: [UNNotificationAttachment]) -> Bool {
+    @objc func optionsMatch(newOptions: [String:Any], workerURL:URL, attachments: [UNNotificationAttachment]) -> Bool {
         let newOpts = VideoView.getOptionsFromObject(newOptions, workerURL, attachments)
         return newOpts.videoURL == self.opts.videoURL && newOpts.proportion == self.opts.proportion
     }
     
-    init(width: CGFloat, options:[String: Any], worker: ServiceWorkerInstance, context: NSExtensionContext, attachments: [UNNotificationAttachment]) {
+    @objc init(width: CGFloat, options:[String: Any], worker: ServiceWorkerInstance, context: NSExtensionContext, attachments: [UNNotificationAttachment]) {
         
         self.context = context
         

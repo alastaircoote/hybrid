@@ -14,13 +14,13 @@ import JavaScriptCore
 /// We need a reference to a context to go forward, so we have to wrap it in a promise.
 class ArrayBufferJSPromise : JSPromise {
     
-    let data:Data
+    @objc let data:Data
     
-    init(data:Data) {
+    @objc init(data:Data) {
         self.data = data
     }
     
-    func convertToArrayBuffer(_ context:JSContext) {
+    @objc func convertToArrayBuffer(_ context:JSContext) {
         let count = self.data.count / MemoryLayout<UInt32>.size
         var array = [UInt32](repeating: 0, count: count)
         (self.data as NSData).getBytes(&array, length:count * MemoryLayout<UInt32>.size)

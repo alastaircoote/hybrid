@@ -19,15 +19,15 @@ struct Interval {
 /// add that support into the context. All public methods are exactly as you'd expect.
 @objc class ServiceWorkerTimeoutManager : NSObject {
     
-    var lastTimeoutIndex:Int = -1
+    @objc var lastTimeoutIndex:Int = -1
     
     
     /// Couldn't find an easy way to cancel a dispatch_after, so instead, when the dispatch completes
     /// we check this array to see if the timeout has been cancelled. If it has, we don't run the
     /// corresponding JS function.
-    var cancelledTimeouts = Set<Int>()
+    @objc var cancelledTimeouts = Set<Int>()
     
-    func hookFunctions(_ jsContext:JSContext) {
+    @objc func hookFunctions(_ jsContext:JSContext) {
         
         let setTimeoutConvention: @convention(block) (JSValue, JSValue) -> Int = self.setTimeout
         let setIntervalConvention: @convention(block) (JSValue, JSValue) -> Int = self.setInterval
@@ -40,7 +40,7 @@ struct Interval {
         jsContext.setObject(unsafeBitCast(clearIntervalConvention, to: AnyObject.self), forKeyedSubscript: "clearInterval" as (NSCopying & NSObjectProtocol)!)
     }
     
-    func setInterval(_ callback:JSValue, interval: JSValue) -> Int {
+    @objc func setInterval(_ callback:JSValue, interval: JSValue) -> Int {
         
         lastTimeoutIndex += 1
         
@@ -71,7 +71,7 @@ struct Interval {
 
     }
     
-    func clearInterval(_ index:Int) {
+    @objc func clearInterval(_ index:Int) {
         self.clearTimeout(index)
     }
     
@@ -86,7 +86,7 @@ struct Interval {
         return timeout
     }
     
-    func setTimeout(_ callback:JSValue, timeout: JSValue) -> Int {
+    @objc func setTimeout(_ callback:JSValue, timeout: JSValue) -> Int {
         
         lastTimeoutIndex += 1
         
@@ -112,7 +112,7 @@ struct Interval {
         
     }
     
-    func clearTimeout(_ index:Int) {
+    @objc func clearTimeout(_ index:Int) {
         self.cancelledTimeouts.insert(index)
     }
 }

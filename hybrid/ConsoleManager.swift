@@ -14,7 +14,7 @@ import PromiseKit
 /// A bridge to allow console messages in WKWebViews to be transmitted over to internal app logs.
 class ConsoleManager: ScriptMessageManager {
     
-    init(userController:WKUserContentController, webView:HybridWebview) {
+    @objc init(userController:WKUserContentController, webView:HybridWebview) {
         super.init(userController: userController, webView: webView, handlerName: "console")
     }
     

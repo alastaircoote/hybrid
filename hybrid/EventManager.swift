@@ -15,7 +15,7 @@ class EventManager: ScriptMessageManager {
     
     var events = EventEmitter<String?>()
     
-    init(userController:WKUserContentController, webView:HybridWebview) {
+    @objc init(userController:WKUserContentController, webView:HybridWebview) {
         super.init(userController: userController, webView: webView, handlerName: "events")
     }
     

@@ -78,7 +78,7 @@ import JavaScriptCore
     /// Parse headers from an existing object. Can accept headers that are either a string or an array of strings
     ///
     /// - Parameter dictionary: Object containing string keys, and either string or array values
-    public required init(dictionary: [String: AnyObject]) {
+    @objc public required init(dictionary: [String: AnyObject]) {
         super.init()
         
         for (key, val) in dictionary {
@@ -105,7 +105,7 @@ import JavaScriptCore
     /// - Parameter json: The JSON string to parse
     /// - Returns: A complete FetchHeaders object with the headers provided in the JSON
     /// - Throws: If the JSON cannot be parsed successfully.
-    static func fromJSON(_ json:String) throws -> FetchHeaders {
+    @objc static func fromJSON(_ json:String) throws -> FetchHeaders {
         let jsonAsData = json.data(using: String.Encoding.utf8)!
         let headersObj = try JSONSerialization.jsonObject(with: jsonAsData, options: JSONSerialization.ReadingOptions())
         let fh = FetchHeaders()
@@ -123,7 +123,7 @@ import JavaScriptCore
     ///
     /// - Returns: A JSON string
     /// - Throws: if the JSON can't be encoded. Not sure what would ever cause this to happen.
-    func toJSON() throws -> String {
+    @objc func toJSON() throws -> String {
         var dict = [String: [String]]()
         
         for key in self.keys() {
@@ -157,7 +157,7 @@ import JavaScriptCore
     /// Boolean to indicate whether the body of this request/response has already been consumed
     var bodyUsed:Bool = false
     
-    var data:Data?
+    @objc var data:Data?
     
     /// Parse the body as JSON
     ///
@@ -248,8 +248,8 @@ import JavaScriptCore
 @objc class FetchRequest : FetchBody, FetchRequestExports {
     
     var url:String
-    var method:String
-    var headers:FetchHeaders
+    @objc var method:String
+    @objc var headers:FetchHeaders
    
     required init(url:String, options: [String: Any]?)  {
         self.url = url
@@ -300,7 +300,7 @@ import JavaScriptCore
     /// us to actually run the fetch operation
     ///
     /// - Returns: an NSURLRequest object populated with the info contained in this FetchRequest
-    func toNSURLRequest() -> URLRequest {
+    @objc func toNSURLRequest() -> URLRequest {
 
         let request = NSMutableURLRequest(url: URL(string: self.url)!)
         request.httpMethod = self.method
@@ -330,11 +330,11 @@ import JavaScriptCore
 /// A port of the Fetch API's Response object: https://developer.mozilla.org/en-US/docs/Web/API/Response
 @objc class FetchResponse : FetchBody, FetchResponseExports {
     
-    let headers:FetchHeaders
+    @objc let headers:FetchHeaders
     var status:Int
     var statusText:String
     
-    init(body: Data?, status: Int, statusText:String, headers: FetchHeaders) {
+    @objc init(body: Data?, status: Int, statusText:String, headers: FetchHeaders) {
         self.status = status
         self.headers = headers
         self.statusText = statusText
@@ -407,7 +407,7 @@ class NoErrorButNoResponseError : Error {}
 /// But if we want to disable this, we need to use this delegate
 class DoNotFollowRedirectSessionDelegate : NSObject, URLSessionDelegate {
     
-    func URLSession(_ session: Foundation.URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: (URLRequest?) -> Void) {
+    @objc func URLSession(_ session: Foundation.URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: (URLRequest?) -> Void) {
         // Do not follow redirects
         completionHandler(nil)
     }
@@ -419,9 +419,9 @@ class DoNotFollowRedirectSessionDelegate : NSObject, URLSessionDelegate {
 /// be used in Swift contexts too.
 @objc class GlobalFetch: NSObject, GlobalFetchExports {
     
-    let scope:URL
+    @objc let scope:URL
     
-    init(workerScope: URL) {
+    @objc init(workerScope: URL) {
         self.scope = workerScope
     }
     
@@ -538,7 +538,7 @@ class DoNotFollowRedirectSessionDelegate : NSObject, URLSessionDelegate {
     /// Add Request, Response, Headers and Body to a JSContext's global scope.
     ///
     /// - Parameter context: The JSContext to add to.
-    func addToJSContext(_ context:JSContext) {
+    @objc func addToJSContext(_ context:JSContext) {
         context.setObject(FetchRequest.self, forKeyedSubscript: "Request" as (NSCopying & NSObjectProtocol)!)
         context.setObject(FetchResponse.self, forKeyedSubscript: "Response" as (NSCopying & NSObjectProtocol)!)
         context.setObject(FetchHeaders.self, forKeyedSubscript: "Headers" as (NSCopying & NSObjectProtocol)!)

@@ -17,19 +17,19 @@ import JavaScriptCore
 
 @objc class ImageBitmap : NSObject, ImageBitmapExports {
     
-    let image:CGImage
+    @objc let image:CGImage
     
-    static let createImageBitmap = unsafeBitCast((ImageBitmap.createImageBitmapFunc) as @convention(block) (Data) -> JSPromise, to: AnyObject.self)
+    @objc static let createImageBitmap = unsafeBitCast((ImageBitmap.createImageBitmapFunc) as @convention(block) (Data) -> JSPromise, to: AnyObject.self)
     
 //    context.setObject(unsafeBitCast(fetchAsConvention, AnyObject.self), forKeyedSubscript: "fetch")
     
-    init(data:Data) {
+    @objc init(data:Data) {
         let dataPtr = CFDataCreate(kCFAllocatorDefault, (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count), data.count)
         let dataProvider = CGDataProvider(data: dataPtr!)!
         image = CGImage(pngDataProviderSource: dataProvider, decode: nil, shouldInterpolate: true, intent: CGColorRenderingIntent.defaultIntent)!
     }
     
-    init(image:CGImage) {
+    @objc init(image:CGImage) {
         self.image = image
     }
     

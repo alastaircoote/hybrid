@@ -29,36 +29,36 @@ import JavaScriptCore
     
     /// Grabbed in the grabResolveAndRejectFromPromise function, this is the JS function
     /// for resolving our promise
-    var jsResolveFunction:JSValue?
+    @objc var jsResolveFunction:JSValue?
     
     /// Grabbed in the grabResolveAndRejectFromPromise function, this is the JS function
     /// for rejecting our promise
-    var jsRejectFunction:JSValue?
+    @objc var jsRejectFunction:JSValue?
     
     
     /// This is the 'then' function of our JS promise, bound to the promise (otherwise
     /// execution fails, it appears callWithArguments() doesn't respect bindings)
-    var jsThenFunction:JSValue?
+    @objc var jsThenFunction:JSValue?
     
     /// This is the 'catch' function of our JS promise, bound to the promise (otherwise
     /// execution fails, it appears callWithArguments() doesn't respect bindings)
-    var jsCatchFunction:JSValue?
+    @objc var jsCatchFunction:JSValue?
     
-    var context:JSContext?
+    @objc var context:JSContext?
     
     
     /// It is possible for a promise to resolve before a .then() is attached to it. If
     /// that is the case, we need to note it and immediately fire when .then() or .catch()
     /// are run.
-    var hasResponded = false
+    @objc var hasResponded = false
     
     
     /// We store the resolve value in case the promise has resolved before .then() is called
-    var resolveValue:Any?
+    @objc var resolveValue:Any?
     
     
     /// We store the reject value in case the promise has rejected before .catch() is called
-    var rejectError:Error?
+    @objc var rejectError:Error?
     
     
     /// This function is passed into the new Promise() constructor, allowing us to grab
@@ -77,7 +77,7 @@ import JavaScriptCore
     /// to the JS promise.
     ///
     /// - Parameter withObj: The object to resolve with. Must convert to AnyObject, or be nil.
-    func resolve(_ withObj: Any?) {
+    @objc func resolve(_ withObj: Any?) {
         self.hasResponded = true
         self.resolveValue = withObj
         
@@ -93,7 +93,7 @@ import JavaScriptCore
     /// a JS error with the string value of this error. Then passes it to our reject function.
     ///
     /// - Parameter withError: The error to send back to the JS context
-    func reject(_ withError: Error) {
+    @objc func reject(_ withError: Error) {
         self.hasResponded = true
         self.rejectError = withError
         
@@ -186,7 +186,7 @@ import JavaScriptCore
 
     
     /// Quick utility function to match Promise.resolve() in JS
-    static func resolve(_ val:AnyObject?) -> JSPromise {
+    @objc static func resolve(_ val:AnyObject?) -> JSPromise {
         let promise = JSPromise()
         promise.resolve(val)
         return promise

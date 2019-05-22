@@ -20,9 +20,9 @@ class ServiceWorkerAPI: ScriptMessageManager {
     
     
     /// The current, active service worker for this webview
-    var currentActiveServiceWorker:ServiceWorkerInstance?
+    @objc var currentActiveServiceWorker:ServiceWorkerInstance?
     
-    init(userController:WKUserContentController, webView:HybridWebview) {
+    @objc init(userController:WKUserContentController, webView:HybridWebview) {
         super.init(userController: userController, webView: webView, handlerName: "serviceWorker")
         self.swChangeListener = ServiceWorkerManager.events.on(ServiceWorkerManager.STATUS_CHANGE_EVENT, self.serviceWorkerChange)
         
@@ -35,7 +35,7 @@ class ServiceWorkerAPI: ScriptMessageManager {
     /// - Parameters:
     ///   - message: The message, usually a JSON-encoded string
     ///   - ports: Ports to pass onwards to the worker to be used to send replies back
-    func sendPostMessageToWorker(_ message:Any, ports:[MessagePort]) {
+    @objc func sendPostMessageToWorker(_ message:Any, ports:[MessagePort]) {
         
         let ev = ExtendableMessageEvent(data: message, ports: ports)
         self.currentActiveServiceWorker!.dispatchExtendableEvent(ev)
@@ -56,7 +56,7 @@ class ServiceWorkerAPI: ScriptMessageManager {
 
     }
     
-    func receivePostMessageFromWorker(_ message:Any) {
+    @objc func receivePostMessageFromWorker(_ message:Any) {
         // TODO: ports, ports, ports
         
         var jsonString = ""
@@ -106,7 +106,7 @@ class ServiceWorkerAPI: ScriptMessageManager {
     /// Receive a new service worker to replace any active worker attached to the webview
     ///
     /// - Parameter newWorker: The new service worker to set as active
-    func setNewActiveServiceWorker(_ newWorker:ServiceWorkerInstance) {
+    @objc func setNewActiveServiceWorker(_ newWorker:ServiceWorkerInstance) {
         self.currentActiveServiceWorker = newWorker
         
         let match = ServiceWorkerMatch(instanceId: newWorker.instanceId, url: newWorker.url, installState: newWorker.installState, scope: newWorker.scope)

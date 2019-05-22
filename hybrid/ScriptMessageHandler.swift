@@ -21,13 +21,13 @@ class ScriptMessageManager: NSObject, WKScriptMessageHandler {
     /// If a derived class doesn't implement handleMessage() this error will be thrown.
     class HandleMessageNotImplementedError : Error {}
     
-    let webview:HybridWebview
-    let userController:WKUserContentController
+    @objc let webview:HybridWebview
+    @objc let userController:WKUserContentController
     
     
     /// The name for this handler - must be unique per webview, as it creates
     /// window.__promiseBridges[handlerName] in the global context
-    let handlerName:String
+    @objc let handlerName:String
     
     
     /// Just for sanity's sake, a struct to store the fulfill and reject halves of a promise
@@ -63,7 +63,7 @@ class ScriptMessageManager: NSObject, WKScriptMessageHandler {
         }
     }
     
-    init(userController: WKUserContentController, webView: HybridWebview, handlerName:String) {
+    @objc init(userController: WKUserContentController, webView: HybridWebview, handlerName:String) {
         self.webview = webView
         self.userController = userController
         self.handlerName = handlerName
@@ -90,7 +90,7 @@ class ScriptMessageManager: NSObject, WKScriptMessageHandler {
     /// - Parameters:
     ///   - name: Name of the event to send
     ///   - arguments: An array of JSON strings to send to the JS function. Note: this means strings should be surrounded in ""s, numbers should not.
-    func sendEvent(_ name:String, arguments: [String]) {
+    @objc func sendEvent(_ name:String, arguments: [String]) {
         self.webview.evaluateJavaScript("window.__promiseBridges['" + self.handlerName + "'].emit('" + name + "'," + arguments.joined(separator: ",") +  ")", completionHandler:  {resp, err in
             if err != nil {
                 log.error("Failed to send event " + name + " to handler " + self.handlerName + ": " + String(describing: err!))

@@ -21,11 +21,11 @@ import JavaScriptCore
 /// provide IndexedDB functionality, backed by WebSQL.
 @objc class WebSQLDatabaseCreator: NSObject, WebSQLDatabaseCreatorExports {
     
-    let origin:String
-    let context:JSContext
-    let sanitisedOrigin:String
+    @objc let origin:String
+    @objc let context:JSContext
+    @objc let sanitisedOrigin:String
     
-    init(context:JSContext, origin:String) {
+    @objc init(context:JSContext, origin:String) {
         
         self.origin = origin
         self.context = context
@@ -97,10 +97,10 @@ import JavaScriptCore
 /// Obj-C functionality that is used in js-src's websql.ts.
 @objc class WebSQLDatabase: NSObject, WebSQLDatabaseExports {
     
-    let db:FMDatabase
-    let context:JSContext
+    @objc let db:FMDatabase
+    @objc let context:JSContext
     
-    init(dbPath: String, context:JSContext)  {
+    @objc init(dbPath: String, context:JSContext)  {
         self.db = FMDatabase(path: dbPath)
         self.context = context
         self.db.open()

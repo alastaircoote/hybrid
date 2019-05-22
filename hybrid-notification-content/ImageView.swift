@@ -12,7 +12,7 @@ import UserNotifications
 
 class ImageView : UIImageView {
     
-    init(width: CGFloat, url:String, worker: ServiceWorkerInstance, attachments: [UNNotificationAttachment]) {
+    @objc init(width: CGFloat, url:String, worker: ServiceWorkerInstance, attachments: [UNNotificationAttachment]) {
         
         let imageURL = URL(string:url, relativeTo: worker.url as URL?)!
         
@@ -45,7 +45,7 @@ class ImageView : UIImageView {
         let proportion = img!.size.width / width
         self.frame = CGRect(x: 0, y: 0, width: width, height: img!.size.height / proportion)
         
-        self.contentMode = UIViewContentMode.scaleAspectFit
+        self.contentMode = UIView.ContentMode.scaleAspectFit
     }
     
     required init?(coder aDecoder: NSCoder) {

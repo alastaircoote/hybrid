@@ -11,7 +11,7 @@ import UIKit
 
 extension UINavigationBar {
     
-    func setBottomBorderColor(color: UIColor) {
+    @objc func setBottomBorderColor(color: UIColor) {
         
         var bottomBorderView = self.viewWithTag(991231)
         

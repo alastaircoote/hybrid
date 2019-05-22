@@ -14,13 +14,13 @@ import Foundation
 /// app itself. Push events are processed in the background by the app, unless it has been force
 /// quit by the user.
 @objc class PendingPushEvent : NSObject, NSCoding {
-    var serviceWorkerURL: String
-    var payload: String
-    var dateAdded: Date
-    var pushID:String
+    @objc var serviceWorkerURL: String
+    @objc var payload: String
+    @objc var dateAdded: Date
+    @objc var pushID:String
     
     /// Randomly generated UUID to allow us to refer to specific PushEvents when deleting, etc
-    var uuid:String
+    @objc var uuid:String
     
     func encode(with aCoder: NSCoder) {
         
@@ -32,7 +32,7 @@ import Foundation
         
     }
     
-    init(serviceWorkerURL:String, payload:String, date:Date, pushID:String, uuid: String = UUID().uuidString) {
+    @objc init(serviceWorkerURL:String, payload:String, date:Date, pushID:String, uuid: String = UUID().uuidString) {
         self.dateAdded = date
         self.serviceWorkerURL = serviceWorkerURL
         self.payload = payload

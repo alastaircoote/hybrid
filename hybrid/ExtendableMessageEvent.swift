@@ -25,9 +25,9 @@ import JavaScriptCore
     /// We use this to make sure we aren't echoing messages back to the
     /// webview that sent them. Need to look at the logic of this because
     /// it doesn't make a lot of sense that it would ever do that
-    var fromWebView:WKWebView?
+    @objc var fromWebView:WKWebView?
     
-    required init(data:Any?, ports: [MessagePort]?) {
+    @objc required init(data:Any?, ports: [MessagePort]?) {
         
         self.data = data
         
@@ -43,7 +43,7 @@ import JavaScriptCore
     }
     
     
-    init(data:Any?, ports:[MessagePort], fromWebView:WKWebView?) {
+    @objc init(data:Any?, ports:[MessagePort], fromWebView:WKWebView?) {
         self.data = data
         self.ports = ports
         

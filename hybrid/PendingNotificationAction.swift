@@ -27,13 +27,13 @@ enum PendingWebviewActionType: Int32 {
 /// UserDefaults and queried when the app starts, resumes from suspend, etc.
 @objc class PendingWebviewAction: NSObject, NSCoding {
     var type:PendingWebviewActionType
-    var record:WebviewRecord?
-    var uuid:String
-    var options:[String: Any]?
+    @objc var record:WebviewRecord?
+    @objc var uuid:String
+    @objc var options:[String: Any]?
     
     // This is a total hack, but if we're in the same process our events evaluate immediately, and we might
     // want to wait for that. This adds a lot of uncertainty, though
-    var onImmediateExecution:(() -> ())?
+    @objc var onImmediateExecution:(() -> ())?
     
     convenience init(type:PendingWebviewActionType, record: WebviewRecord?) {
         self.init(type: type, record: record, options: nil)

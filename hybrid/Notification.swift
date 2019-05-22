@@ -35,7 +35,7 @@ import UserNotifications
     var title:String
     var video: NotificationVideo?
     var canvas: OffscreenCanvas?
-    var pushID:String
+    @objc var pushID:String
     
     //show different text in collapsed view vs expanded
     var collapsed: [String: Any]?
@@ -43,9 +43,9 @@ import UserNotifications
     
     /// We don't store a reference to the worker itself because it could have been updated
     /// in the mean time. We always want the latest instance.
-    var belongsToWorkerURL:URL
+    @objc var belongsToWorkerURL:URL
     
-    init(title:String, notificationData: [String:AnyObject]? = nil, belongsToWorkerURL:URL, pushID:String) {
+    @objc init(title:String, notificationData: [String:AnyObject]? = nil, belongsToWorkerURL:URL, pushID:String) {
         self.title = title
         self.belongsToWorkerURL = belongsToWorkerURL
         self.pushID = pushID
@@ -63,14 +63,14 @@ import UserNotifications
         
     }
     
-    var closeState = false
+    @objc var closeState = false
     
     func close() {
         self.closeState = true
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [self.pushID])
     }
     
-    static func fromNotificationShow(_ notificationShow: PendingNotificationShow, canvas:OffscreenCanvas? = nil, videoView:NotificationVideo? = nil) -> Notification {
+    @objc static func fromNotificationShow(_ notificationShow: PendingNotificationShow, canvas:OffscreenCanvas? = nil, videoView:NotificationVideo? = nil) -> Notification {
         
         let notification = Notification(title: notificationShow.title, notificationData: notificationShow.options as [String:AnyObject]?, belongsToWorkerURL: notificationShow.workerURL as URL, pushID: notificationShow.pushID)
         
@@ -97,7 +97,7 @@ import UserNotifications
     let target: String
     let reply: String?
     
-    init(type: String, notification:Notification, action:String = "", target:String = "", reply:String? = nil) {
+    @objc init(type: String, notification:Notification, action:String = "", target:String = "", reply:String? = nil) {
         self.notification = notification
         self.action = action
         self.target = target

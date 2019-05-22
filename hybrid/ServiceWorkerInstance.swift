@@ -35,9 +35,9 @@ struct PromiseReturn {
     
     
     /// The actual JavascriptCore context in which our worker lives and runs.
-    var jsContext:JSContext!
+    @objc var jsContext:JSContext!
     
-    var cache:ServiceWorkerCacheStorage!
+    @objc var cache:ServiceWorkerCacheStorage!
     
     
     /// Errors encountered in the JSContext are passed to exceptionHandler() rather than
@@ -47,20 +47,20 @@ struct PromiseReturn {
     
     
     /// The remote URL this service worker was downloaded from.
-    let url:URL!
+    @objc let url:URL!
     
     
     /// The scope for this service worker
-    let scope:URL!
+    @objc let scope:URL!
     
-    let timeoutManager = ServiceWorkerTimeoutManager()
-    var registration: ServiceWorkerRegistration?
+    @objc let timeoutManager = ServiceWorkerTimeoutManager()
+    @objc var registration: ServiceWorkerRegistration?
     
     
     /// While service workers don't support WebSQL, we're using a WebSQL-based shim to add
     /// IndexedDB support.
-    let webSQL: WebSQLDatabaseCreator!
-    var clientManager:WebviewClientManager?
+    @objc let webSQL: WebSQLDatabaseCreator!
+    @objc var clientManager:WebviewClientManager?
     
    
     var installState:ServiceWorkerInstallState!
@@ -68,7 +68,7 @@ struct PromiseReturn {
     
     /// The ID for this worker. This is controlled by the database, where it is set by an
     /// auto-incrementing primary key.
-    let instanceId:Int
+    @objc let instanceId:Int
     
     
     /// The same as the url property, but returns a string instead of NSURL, so that we can use
@@ -79,12 +79,12 @@ struct PromiseReturn {
         }
     }
     
-    var globalFetch:GlobalFetch
-    var console:Console
+    @objc var globalFetch:GlobalFetch
+    @objc var console:Console
     
     /// Another shim to match the service worker spec, this turns out installstate enum into
     /// a string.
-    var state:String {
+    @objc var state:String {
         get {
             if self.installState == ServiceWorkerInstallState.activated {
                 return "activated"
@@ -105,7 +105,7 @@ struct PromiseReturn {
          }
     }
     
-    var globalScope:ServiceWorkerGlobalScope
+    @objc var globalScope:ServiceWorkerGlobalScope
     
     
     init(url:URL, scope: URL?, instanceId:Int, installState: ServiceWorkerInstallState) {
@@ -269,7 +269,7 @@ struct PromiseReturn {
     ///
     /// - Parameter url: The URL to check
     /// - Returns: true if within scope, otherwise false
-    func scopeContainsURL(_ url:URL) -> Bool {
+    @objc func scopeContainsURL(_ url:URL) -> Bool {
         return url.absoluteString.hasPrefix(self.scope.absoluteString)
     }
     

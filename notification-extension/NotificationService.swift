@@ -12,8 +12,8 @@ import JavaScriptCore
 
 class NotificationService: UNNotificationServiceExtension {
     
-    var bestAttemptContent: UNMutableNotificationContent?
-    var contentHandler: ((UNNotificationContent) -> Void)?
+    @objc var bestAttemptContent: UNMutableNotificationContent?
+    @objc var contentHandler: ((UNNotificationContent) -> Void)?
    
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         
@@ -42,7 +42,7 @@ class NotificationService: UNNotificationServiceExtension {
         if maybeSilent == "true" {
             self.bestAttemptContent!.sound = nil
         } else {
-            self.bestAttemptContent!.sound = UNNotificationSound.default()
+            self.bestAttemptContent!.sound = UNNotificationSound.default
         }
         
         

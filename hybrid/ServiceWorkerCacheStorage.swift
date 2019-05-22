@@ -24,9 +24,9 @@ import PromiseKit
 @objc class ServiceWorkerCacheStorage : NSObject, ServiceWorkerCacheStorageExports {
     
     /// The instance this cache handler is attached to
-    let worker: ServiceWorkerInstance
+    @objc let worker: ServiceWorkerInstance
     
-    init(serviceWorker: ServiceWorkerInstance) {
+    @objc init(serviceWorker: ServiceWorkerInstance) {
         self.worker = serviceWorker
         
         super.init()
@@ -39,7 +39,7 @@ import PromiseKit
         
     }
     
-    func _open(_ name:String) -> ServiceWorkerCache {
+    @objc func _open(_ name:String) -> ServiceWorkerCache {
         return ServiceWorkerCache(swURL: self.worker.url, swScope: self.worker.scope, name: name)
     }
     
