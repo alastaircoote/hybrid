@@ -693,8 +693,6 @@
 			buildConfigurationList = D31BC1311CD534CF00CF6BEB /* Build configuration list for PBXNativeTarget "hybrid" */;
 			buildPhases = (
 				9B83742D19A3F00CD184577C /* [CP] Check Pods Manifest.lock */,
-				8A53C92C1DF5D16600560310 /* ShellScript */,
-				D32977D31CDE5D16008B3767 /* ShellScript */,
 				D31BC1051CD534CE00CF6BEB /* Sources */,
 				D31BC1061CD534CE00CF6BEB /* Frameworks */,
 				D31BC1071CD534CE00CF6BEB /* Resources */,
@@ -774,6 +772,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -869,19 +868,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A53C92C1DF5D16600560310 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ". ~/.nvm/nvm.sh\nnvm exec 6 node \"$PROJECT_DIR\"/js-src/preload-workers \"$SRCROOT\"/preload-workers.json \"$SRCROOT\"/preload-workers\n";
-		};
 		8C4A98E43D1B65285488ADCB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,20 +902,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D32977D31CDE5D16008B3767 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$PROJECT_DIR\"/js-src\nrm ../hybrid/js-dist/*\nnpm run rollup -- src/webview/document-start.ts -o ../hybrid/js-dist/document-start.js &&\nnpm run rollup -- src/service-worker/worker-context.ts -o ../hybrid/js-dist/worker-context.js\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
